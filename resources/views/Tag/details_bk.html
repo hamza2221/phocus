@@ -1,0 +1,72 @@
+<div class="row" ng-init="setupPage()">
+    <div class="col-lg-12">
+        <h1 class="page-header" ng-bind="mainHeadAddEdit"></h1>
+    </div>
+</div>
+  
+    <ol class="breadcrumb">
+          <li class="false">
+            <a class="pjax" href="#/tag_{{tag_type}}">Tag {{tag_type}}</a>
+          </li>
+          <li class="active" ng-bind="breadHeadAddEdit"></li>
+    </ol>
+    
+    <ul class="nav nav-tabs">
+    	<li title="" rel="" class=""> <a class="" href="#/tag_{{tag_type}}"> <span class="fa fa-list"></span> List</a> </li>
+        <li title="" rel="" class="active"><a class="" href=""> <span class="fa fa-plus"></span>
+        <span ng-bind="tabHeadAddEdit"></span></a></li>
+        <li ng-show="tabHeadAddEdit!='Edit'" title="" rel="" class=""> <a class="" href="#/tag_{{tag_type}}/export">  <span class="fa fa-share-square-o"></span> Export </a> </li>
+        
+        <li ng-show="tabHeadAddEdit!='Edit'" title="" rel="" class="">
+            <a class="" href="#/tag_{{tag_type}}/nestable"> 
+                <span class="fa fa-arrows"></span> 
+                Sort 
+            </a> 
+        </li>
+        
+        <li ng-show="tabHeadAddEdit=='Edit'" title="" rel="" class=""> <a class="" href="#/tag_{{tag_type}}/delete/{{tag.id}}">  <span class="fa fa-remove"></span> Delete </a> </li>
+    </ul>
+
+    <form class="form-horizontal" style="margin-top: 30px;" name="frmAdmin" ng-init="GetTag()" novalidate>
+      
+      <fieldset>
+      <legend style="display:none">
+        <i class=""></i> Basic info
+      </legend>
+      
+
+      <div class="form-group control-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10 controls">
+            <input type="text" class="form-control has-error" id="name" name="name" placeholder="" value="" 
+            ng-model="tag.name" ng-required="true">
+            <span class="help-block">Required. </span>
+            <span class="help-block text-red" ng-bind="name_error"></span>
+        </div>
+      </div>
+
+      <input type="hidden" ng-model="tag.id" />
+    </fieldset>
+    <div class="form-group form-actions">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-primary" ng-click="AddNew()" ng-disabled="frmAdmin.$invalid" data-disable-with="Save" name="_save" type="submit">
+          <i class="icon-white icon-ok"></i>
+            Save
+        </button>
+    <span class="extra_buttons">
+    <button class="btn btn-info" data-disable-with="Save and add another" name="_add_another" type="submit">
+    Save and add another
+    </button>
+    <button class="btn btn-info" data-disable-with="Save and edit" name="_add_edit" type="submit">
+    Save and edit
+    </button>
+    <button class="btn" data-disable-with="Cancel" formnovalidate name="_continue" type="submit">
+    <i class="icon-remove"></i>
+    Cancel
+    </button>
+    </span>
+    </div>
+    </div>
+    
+    </form>
+</div>

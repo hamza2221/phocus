@@ -1,0 +1,24 @@
+<div class="row" ng-init="GetTag()">
+    <div class="col-lg-12">
+        <h1 class="page-header">Details for Tag {{tag_type}} '{{tag.name}}'</h1>
+    </div>
+</div>
+<ol class="breadcrumb">
+	<li class="active">Tag {{tag_type}}</li>
+	<li class="">{{tag.name}}</li>
+</ol>
+
+<ul class="nav nav-tabs">
+	<li title="" rel="" class="active"> <a class="" href=""> <span class="fa fa-info-circle"></span> Show</a> </li>
+    <li title="" rel="" class=""><a class="" href="#/tag_{{tag_type}}/edit/{{tag.id}}"> <span class="fa fa-pencil"></span>  Edit</a></li>
+    <li title="" rel="" class=""> <a class="" href="#/tag_{{tag_type}}/delete/{{tag.id}}">  <span class="fa fa-remove"></span> Delete </a> </li>
+</ul>
+
+<div class="fieldset">
+	<h4>Basic Info</h4>
+	<dl>
+		<dt><span class="label label-info">Name</span></dt>
+		<dd class="well" ng-bind="tag.name"></dd>
+		
+	</dl>
+</div>

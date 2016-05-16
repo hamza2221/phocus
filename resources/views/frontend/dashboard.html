@@ -1,0 +1,231 @@
+
+<nav class="hidden mm-menu mm-effect-menu-slide mm-offcanvas" id="mobile-menu">
+    <div class="mm-panels">
+        <div class="mm-panel mm-opened mm-current" id="mm-0"><ul class="mm-listview">
+                <li class="logo-jquery-mmenu">
+                    <a class="close-menu" href="#test">close menu</a>
+                    <a class="logo-icon" href="#/">root path</a>
+                </li>
+                <li>
+                    <a href="#/">home</a>
+                </li>
+                <li>
+                    <a href="#/about">about us</a>
+                </li>
+                <li>
+                    <a href="#/contact">Contact</a>
+                </li>
+                <li>
+                    <!--<a class="link-options" rel="nofollow" data-method="delete" href="./logout">Log out</a>-->
+                    <a href="./logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<header ng-show="headerID == 'dashboard-header'" id="dashboard-header" >
+    <div id="header__container" class="">
+        <a class="header__burger-menu" href="#mobile-menu">mobile menu trigger</a>
+
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a class="dashboard-logo" href="#/">/</a>
+            </div>
+            <nav class="navbar-menu">
+                <ul>
+                    <li>
+                        <a href="#/">home</a>
+                    </li>
+                    <li>
+                        <a href="#/about">about us</a>
+                    </li>
+                    <li>
+                        <a href="#/contact">Contact</a>
+                    </li>
+                    <li>
+                        <a  href="./logout">Logout</a>
+                        <!--<a rel="nofollow" data-method="delete" href="./logout">Log out</a>-->
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<script>
+            $(document).ready(function () {
+                $mobileMenu = $("#mobile-menu");
+                $mobileMenu.mmenu({
+                    navbar: false,
+                    extensions: ["effect-menu-slide"],
+                });
+                var API = $mobileMenu.data("mmenu");
+                $(".close-menu").click(function () {
+                    API.close();
+                });
+            })
+</script>
+
+<!-- Facebook Pixel Code -->
+<script>
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq)
+                    return;
+                n = f.fbq = function () {
+                    n.callMethod ?
+                            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq)
+                    f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window,
+                    document, 'script', '//connect.facebook.net/en_US/fbevents.js');
+</script>
+<main class="main">
+    <div class="container">
+        <div class="ng-scope">
+
+            <section id="profile-dashboard" class="ng-scope">
+                <div class="profile-dashboard__container">
+                    <h1 class="ng-binding">
+                        Welcome <% user_details.name%>!</h1>
+                    <br>
+                    <div class="profile-dashboard__avatar-section">
+                        <div class="avatar-selection avatar-rounded" ng-style="avatarImage" style="background-image: url(./storage/profiles/<% user_details.id %>/<% user_details.picture %>); !important">
+                        </div>
+                        <br>
+                        <span id="name" class="ng-binding"><%user_details.name%></span>
+                        <span id="email" class="ng-binding"><%user_details.email%></span>
+                    </div>
+                    <p class="notes">
+                        This is your dashboard, soon you will be able to see all the tasks asigned to you and much more!
+                    </p>
+                </div>
+            </section>
+            <section id="step-instructions-profile" class="ng-scope">
+                <hr class="separator">
+                <div class="profile-dashboard__container">
+                    <br>
+                    <a class="link" href="#/terms" target="_blank">
+                        INDEPENDENT CONTRACTOR AGREEMENT
+                    </a>
+                    <br>
+                    <br>
+                    <p class="notes">
+                        Please follow these&nbsp;instructions&nbsp;so we can properly pay you when you perform a task:
+                    </p>
+                    <br>
+                    <p class="notes instruction-steps">
+                        1. Download the document from:
+                        <a class="link" href="https://www.irs.gov/pub/irs-pdf/fw9.pdf" target="_blank">https://www.irs.gov/pub/irs-pdf/fw9.pdf</a>
+                    </p>
+                    <p class="notes instruction-steps">
+                        2. – Fill out the form
+                    </p>
+
+                    <p  ng-show="!user_details.w9_form"  class="notes instruction-steps reduce-margin-bottom-last">
+                        3.- Upload your filled form to Phocus.io.</p>
+                    <form  ng-show="!user_details.w9_form"  id="w9Form"  action="./w9file_upload" method="POST">
+                        <input name="user_id" type="hidden" value="<% user_details.id %>" />
+                        <div class="upload_thumbnail">
+                            <label>Upload form</label>
+                            <span class="percent_counterPDF" id="percent_counterPDF"></span>
+                            <input   id="w9File" required="" name="w9form" type="file" />
+                        </div>
+
+
+                    </form>
+
+                    <p  ng-show="user_details.w9_form"  class="notes instruction-steps reduce-margin-bottom-last">
+                        Your form was uploaded:</p>
+
+                    <p  ng-show="user_details.w9_form"  style="    margin-bottom: 133px;">
+                        <a class="link" style="font-size:22px !important;" target="blank" href="./storage/w9_forms/<% user_details.id %>/<%user_details.w9_form%>">Here</a>
+                    </p> 
+
+
+
+
+
+
+                </div>
+            </section></ng-include>
+            <div class="mfp-hide"></div>
+        </div>
+        <script>
+                    // we use this in order to avoid creating a request
+                    // in dashboard in the / resolves
+                    // for the landing pages
+                    // that use angular.js controllers
+                    PhocusApp.isNotlandingPage = true
+        </script>
+
+    </div>
+</main>
+
+<script type="text/javascript">
+            $('#w9Form').on('submit', (function (e) {
+                e.preventDefault();
+                formData = new FormData(this);
+                console.log(formData);
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: formData,
+                    dataType: "json",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    xhr: function () {
+                        var myXhr = $.ajaxSettings.xhr();
+                        if (myXhr.upload) {
+                            myXhr.upload.addEventListener('progress', progressPDF, false);
+                        }
+                        return myXhr;
+                    },
+                    success: function (data) {
+                        $("#percent_counterPDF").hide();
+                        location.reload();
+                    },
+                    error: function (data) {
+                        alert("errors: try again");
+                        console.log(data);
+                    }
+
+                });
+            }));
+            function progressPDF(e) {
+
+                if (e.lengthComputable) {
+                    var max = e.total;
+                    var current = e.loaded;
+                    var Percentage = (current * 100) / max;
+                    $("#percent_counterPDF").html(
+                            parseInt(Percentage) + "%");
+                    console.log(parseInt(Percentage));
+                    if (Percentage >= 100)
+                    {
+                        console.log("complete");
+                    }
+                }
+            }
+
+            $("#w9File").on("change", function () {
+
+                var ext = $('#w9File').val().split('.').pop().toLowerCase();
+                if ($.inArray(ext, ['pdf']) == -1) {
+                    alert('invalid extension! please upload only PDF file');
+                    $('#w9File').val('');
+                    return;
+                }
+                $("#div_upload").hide();
+                $("#wait_msg").show();
+                $("#w9Form").submit();
+            });</script>

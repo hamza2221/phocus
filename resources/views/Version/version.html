@@ -1,0 +1,338 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">List Of Versions</h1>
+    </div>
+</div>
+<messages></messages>
+<ol class="breadcrumb">
+	<li class="false"><a class="pjax" href="#/dashboard">Dashboard</a></li>
+	<li class="active">Versions</li>
+</ol>
+
+
+<ul class="nav nav-tabs">
+    <li title="" rel="" class="active">
+        <a class="" href="#/paper_trail~version">
+            <span class="fa fa-list"></span>
+            List
+        </a> 
+    </li>
+    <li title="" rel="" class="">
+        <a class="" href="#/paper_trail~version/new">
+            <span class="fa fa-plus"></span>
+            Add new
+        </a>
+    </li>
+    <li title="" rel="" class="">
+        <a class="" href="#/paper_trail~version/export"> 
+            <span class="fa fa-share-square-o"></span> 
+            Export 
+        </a> 
+    </li>
+    <li class="dropdown dropdownblue" style="float:right">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="">Selected items
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" style="left:auto; right:0;">
+            <li>
+                <a ng-click="exportSelected()" style="cursor: pointer;">Export selected Versions</a>
+            </li>
+            <li>
+                <a style="cursor: pointer;" ng-click="GetSelectedToDelete()">Delete selected Versions
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown dropdownblue" style="float:right">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="">
+            Add filter
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" id="filters" style="left:auto; right:0;">
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('versions.id')">Id</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('event')">Event</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('whodunnit')">Whodunnit</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('object')">Object</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('created_at')">Created at</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('object_changes')">Object changes</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('transaction_id')">Transaction</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<div style="margin-top:2%;">
+    <form class="pjax-form form-inline" novalidate  accept-charset="UTF-8">
+        <div class="well">
+        <div ng-repeat="filter in filters">
+            <span id="filters_box" name="{{'filter'+$index}}">
+                <p class="filter form-search">
+                    <span class="label label-info form-label btn-filter">
+                        <a style="cursor: pointer;" ng-click="RemoveFilters($index)" class="delete">
+                            <i class="fa fa-trash" style="color: white;"></i>
+                        </a> 
+                        {{filter.filter}}
+                    </span>
+                    <select class="switch-additionnal-fieldsets input-sm form-control" ng-model="filter.operator">
+                        <option value="like">Contains</option>
+                        <option value="is">Is exactly</option>
+                        <option value="starts_with">Starts with</option>
+                        <option value="ends_with">Ends with</option>
+                        <option disabled="disabled">---------</option>
+                        <option value="_not_null">Is present</option>
+                        <option value="_null">Is blank</option>
+                    </select>
+                    <input ng-hide="filter.operator=='_not_null' || filter.operator=='_null'" class="additional-fieldset input-sm form-control" style="display:inline-block;" type="text" ng-model="filter.query">
+                </p>
+            </span>
+        </div>
+            <hr class="filters_box" style="display:none">
+            <div class="input-group">
+                <input class="form-control input-small" name="query" placeholder="Filter" type="search" ng-model="query">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" ng-click="SearchVersion(-1)" >
+                        <i class="fa fa-refresh" ></i>
+                            Refresh
+                    </button>
+                    <button class="btn btn-info" ng-click="RemoveFilters()" id="remove_filter" title="Reset filters">
+                        <i class="fa fa-remove" ></i>
+                    </button>
+                </span>
+            </div>
+            <span style="float:right">
+                <a class="btn btn-info" href="javascript:void(0)" ng-click="exportFound()">Export found Admins</a>
+            </span>
+        </div>
+    </form>
+</div>
+
+<div>
+    
+    <table class="table table-condensed table-striped table-list fixed" ng-init="SearchVersion()" ng-show="versionTbl">
+        <thead>
+            <tr>
+                <th width="3%" class="shrink">
+                    <input type="checkbox" id="selectedAll" ng-model="selectedAll" ng-click="selectAllVersions()" class="ng-pristine ng-untouched ng-valid">
+                </th>
+                
+                <th width="4%" class="header sort-heading" rel="tooltip" ng-click="SearchVersion(1,'id',sorting.reverseSort=!sorting.reverseSort)" style="cursor: pointer;">
+                		<span ng-show="reverseSort" class="caret_right caret_up"><i class="fa fa-caret-up"></i></span>
+                        Id
+                        <span ng-show="orderBy == 'id'">
+                            <span ng-show="!sorting.reverseSort" class="caret_right"><i class="fa fa-caret-down"></i></span>
+                        	<span ng-show="sorting.reverseSort" class="caret_right"><i class="fa fa-caret-up"></i></span>
+                        </span>
+                    
+                </th>
+                
+                <th width="20%" class="header sort-heading" rel="tooltip" ng-click="SearchVersion(1,'item_type',sorting.reverseSort=!sorting.reverseSort)" style="cursor: pointer;">
+                		<span ng-show="reverseSort" class="caret_right caret_up ng-hide"><i class="fa fa-caret-up"></i></span>
+                        Item
+                        <span ng-show="orderBy == 'item_type'">
+                            <span ng-show="!sorting.reverseSort" class="caret_right"><i class="fa fa-caret-down"></i></span>
+                        	<span ng-show="sorting.reverseSort" class="caret_right"><i class="fa fa-caret-up"></i></span>
+                        </span>
+                    
+                </th>
+                
+                <th width="10%" class="header sort-heading" rel="tooltip" ng-click="SearchVersion(1,'event',sorting.reverseSort=!sorting.reverseSort)" style="cursor: pointer;">
+                		<span ng-show="reverseSort" class="caret_right caret_up"><i class="fa fa-caret-up"></i></span>
+                        Event
+                        <span ng-show="orderBy == 'event'">
+                            <span ng-show="!sorting.reverseSort" class="caret_right"><i class="fa fa-caret-down"></i></span>
+                        	<span ng-show="sorting.reverseSort" class="caret_right"><i class="fa fa-caret-up"></i></span>
+                        </span>
+                </th>
+                
+                <th width="10%" class="header sort-heading" rel="tooltip" ng-click="SearchVersion(1,'whodunnit',sorting.reverseSort=!sorting.reverseSort)" style="cursor: pointer;">
+                		<span ng-show="reverseSort" class="caret_right caret_up"><i class="fa fa-caret-up"></i></span>
+                        Whodunnit
+                        <span ng-show="orderBy == 'whodunnit'">
+                            <span ng-show="!sorting.reverseSort" class="caret_right"><i class="fa fa-caret-down"></i></span>
+                        	<span ng-show="sorting.reverseSort" class="caret_right"><i class="fa fa-caret-up"></i></span>
+                        </span>
+                </th>
+                
+                <th width="23%" class="header sort-heading" rel="tooltip" ng-click="SearchVersion(1,'object',sorting.reverseSort=!sorting.reverseSort)" style="cursor: pointer;">
+                		<span ng-show="reverseSort" class="caret_right caret_up"><i class="fa fa-caret-up"></i></span>
+                        Object
+                        <span ng-show="orderBy == 'object'">
+                            <span ng-show="!sorting.reverseSort" class="caret_right"><i class="fa fa-caret-down"></i></span>
+                        	<span ng-show="sorting.reverseSort" class="caret_right"><i class="fa fa-caret-up"></i></span>
+                        </span>
+                </th>
+                
+                <th width="15%" class="header sort-heading ng-binding ng-scope" rel="tooltip" ng-click="SearchVersion(1,'created_at',sorting.reverseSort=!sorting.reverseSort)" style="cursor: pointer;">
+                		<span ng-show="reverseSort" class="caret_right caret_up"><i class="fa fa-caret-up"></i></span>
+                        Created at
+                        <span ng-show="orderBy == 'created_at'">
+                            <span ng-show="!sorting.reverseSort" class="caret_right"><i class="fa fa-caret-down"></i></span>
+                        	<span ng-show="sorting.reverseSort" class="caret_right"><i class="fa fa-caret-up"></i></span>
+                        </span>
+                    
+                </th>
+                
+                <th width="5%" class="header sort-heading" rel="tooltip">...</th>
+                <th width="10%" class="last shrink"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="version in versions">
+                <td>
+                    <input type="checkbox" value="version.id" ng-model="version.Selected">
+                </td>
+                <td ng-show="setNo==0" ng-bind="version.id"></td>
+                <td ng-show="setNo==0" ng-bind-html="version.item_id | unsafe"></td>
+                <td ng-show="setNo==0" ng-bind="version.event"></td>
+                <td ng-show="setNo==0">{{version.whodunnit > 0? version.whodunnit:'-'}}</td>
+                <td title="{{version.object}}" ng-show="setNo==0">
+                	{{version.object != null? (version.object | limitTo: 30)+'...':'-'}}
+                </td>
+                <td ng-show="setNo==0" ng-bind="version.created_at"></td>
+                <!--<td ng-show="setNo==0" >
+                    <a href="" ng-click="SearchVersion(pageNumber,orderBy,sortOrder,1)">...</a>
+                </td>
+                <td ng-show="setNo==1">
+                    <a href="" ng-click="SearchVersion(pageNumber,orderBy,sortOrder,0)">...</a>
+                </td>-->
+                
+                <td>
+                    <a ng-click="toggleTable(2)" style="cursor:pointer">...</a>
+                </td>
+                
+                <td ng-show="setNo==1" ng-bind="version.object_changes"></td>
+                <td ng-show="setNo==1" ng-bind="version.transaction_id"></td>
+                <td ng-show="setNo==1" >
+                    <a ng-show="version.vid" href="#/paper_trail~version_association/show/{{version.vid}}"> PaperTrail::VersionAssociation #{{version.vid}}</a>
+                </td>
+                <td class="last links">
+                <ul class="inline list-inline">
+                  <li title="Show" rel="tooltip" class="icon show_member_link ">
+                    <a class="pjax" href="#/paper_trail~version/show/{{version.id}}">
+                      <i class="fa fa-info-circle"></i>
+                      <span style="display:none">Show</span>
+                    </a>
+                  </li>
+                
+                  <li title="Edit" rel="tooltip" class="icon edit_member_link ">
+                    <a class="pjax" href="#/paper_trail~version/edit/{{version.id}}">
+                      <i class="fa fa-pencil"></i>
+                      <span style="display:none">Edit</span>
+                    </a>
+                  </li>
+                
+                  <li title="Delete" rel="tooltip" class="icon delete_member_link ">
+                    <a class="pjax" href="#/paper_trail~version/delete/{{version.id}}">
+                      <i class="fa fa-remove"></i>
+                      <span style="display:none">Delete</span>
+                    </a>
+                  </li>
+                </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+    <table class="table table-condensed table-striped table-list fixed" ng-init="SearchVersion()" ng-show="versionObjChanges">
+        <thead>
+            <tr>
+                <th width="5%" class="shrink">
+                    <input type="checkbox" id="selectedAll" ng-model="selectedAll" ng-click="selectAllVersions()" class="ng-pristine ng-untouched ng-valid">
+                </th>
+                
+                <th width="5%" class="header" rel="tooltip">...</th>
+                
+                <th width="20%" class="header sort-heading" rel="tooltip" ng-click="SearchVersion(1,'object_changes',sorting.reverseSort=!sorting.reverseSort)" style="cursor: pointer;">
+                		<span ng-show="reverseSort" class="caret_right caret_up ng-hide"><i class="fa fa-caret-up"></i></span>
+                        Object Changes
+                        <span ng-show="orderBy == 'object_changes'">
+                            <span ng-show="!sorting.reverseSort" class="caret_right"><i class="fa fa-caret-down"></i></span>
+                        	<span ng-show="sorting.reverseSort" class="caret_right"><i class="fa fa-caret-up"></i></span>
+                        </span>
+                    
+                </th>
+                
+                <th width="10%" class="header sort-heading" rel="tooltip" ng-click="SearchVersion(1,'transaction_id',sorting.reverseSort=!sorting.reverseSort)" style="cursor: pointer;">
+                		<span ng-show="reverseSort" class="caret_right caret_up"><i class="fa fa-caret-up"></i></span>
+                        Transaction
+                        <span ng-show="orderBy == 'transaction_id'">
+                            <span ng-show="!sorting.reverseSort" class="caret_right"><i class="fa fa-caret-down"></i></span>
+                        	<span ng-show="sorting.reverseSort" class="caret_right"><i class="fa fa-caret-up"></i></span>
+                        </span>
+                </th>
+                
+                <th width="20%" class="header" rel="tooltip">Version associations</th>
+                <th width="10%" class="last shrink"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="version in versions">
+                <td><input type="checkbox" value="version.id" ng-model="version.Selected"></td>
+                <td><a  ng-click="toggleTable(1)" style="cursor:pointer">...</a></td>
+                <td title="{{version.object_changes}}" ng-bind="(version.object_changes | limitTo: 30)+'...'"></td>
+                <td ng-bind="version.transaction_id"></td>
+                <td>
+                	<span ng-if="version.vid > 0">
+                    	<a href="#/paper_trail~version_association/show/{{version.vid}}">PaperTrail::VersionAssociation #{{version.vid}}</a>
+                    </span>
+                </td>
+                <td class="last links">
+                <ul class="inline list-inline">
+                  <li title="Show" rel="tooltip" class="icon show_member_link ">
+                    <a class="pjax" href="#/paper_trail~version/show/{{version.id}}">
+                      <i class="fa fa-info-circle"></i>
+                      <span style="display:none">Show</span>
+                    </a>
+                  </li>
+                
+                  <li title="Edit" rel="tooltip" class="icon edit_member_link ">
+                    <a class="pjax" href="#/paper_trail~version/edit/{{version.id}}">
+                      <i class="fa fa-pencil"></i>
+                      <span style="display:none">Edit</span>
+                    </a>
+                  </li>
+                
+                  <li title="Delete" rel="tooltip" class="icon delete_member_link ">
+                    <a class="pjax" href="#/paper_trail~version/delete/{{version.id}}">
+                      <i class="fa fa-remove"></i>
+                      <span style="display:none">Delete</span>
+                    </a>
+                  </li>
+                </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div >
+        <ul class="pagination">
+            <li ng-class="{disabled: currentPage == 1}">
+                <a style="cursor: pointer;" ng-click="SearchVersion(currentPage-1)">« Prev</a>
+            </li>
+            <li ng-repeat="n in range"
+                ng-class="{active: n == currentPage-1}"
+            ng-click="SearchVersion(n+1)">
+                <a href ng-bind="n + 1">1</a>
+            </li>
+            <li ng-class="{disabled: currentPage == limit}">
+                <a style="cursor: pointer;"  ng-click="SearchVersion(currentPage+1)">Next »</a>
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix total-count">
+    {{total}} Versions
+    </div>
+</div>

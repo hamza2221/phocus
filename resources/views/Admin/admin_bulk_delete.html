@@ -1,0 +1,45 @@
+<div class="row" ng-init="GetAdminByIDs()">
+    <div class="col-lg-12">
+        <h1 class="page-header">Following Admins will be deleted:</h1>
+    </div>
+</div>
+<ol class="breadcrumb">
+	<li class="">Dashboard</li>
+	<li><a href="#/admin">Admins</a></li>
+	<li> Multiple Delete</li>
+</ol>
+
+<ul class="nav nav-tabs">
+	<li title="" rel="" class="active">
+        <a class="" href="#/admin">
+            <span class="fa fa-list"></span>
+            List
+        </a> 
+    </li>
+    <li title="" rel="" class="">
+        <a class="" href="#/admin/new">
+            <span class="fa fa-plus"></span>
+            Add new
+        </a>
+    </li>
+    <li title="" rel="" class="">
+        <a class="" href="#/admin/export"> 
+            <span class="fa fa-share-square-o"></span> 
+            Export 
+        </a> 
+    </li>
+</ul>
+
+
+<div>
+<ul ng-repeat="admin in admins">
+    <li style="display:block; margin-top:10px">
+        <span class="label label-default">Admin</span>
+        <a class="pjax" href="#/admin/show/{{admin.id}}">{{admin.name}}</a>
+        <ul>
+        </ul>
+    </li>
+</ul>
+<button class="btn btn-danger" ng-click="DeleteAdminByIds()"><i class="fa fa-check"></i>Yes, I'm Sure</button>
+<button class="btn"><i class="fa fa-remove"></i>Cancel</button>
+</div>

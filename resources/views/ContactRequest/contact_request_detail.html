@@ -1,0 +1,141 @@
+<div class="row" ng-init="detailContactRequest()">
+    <div class="col-lg-12">
+        <h1 class="page-header">Contact Requests Details</h1>
+    </div>
+</div>
+<messages></messages>
+<ol class="breadcrumb">
+    <li class="active">Dashboard</li>
+    <li class="active">Contact Request</li>
+    <li class="active">Show</li>
+</ol>
+
+
+<ul class="nav nav-tabs">
+
+    <li title="" rel="" class="active">
+        <a class="" href="#/contact_request_details">
+            <span class="fa fa-info-circle"></span> Show 
+        </a>
+    </li>
+
+    <li title="" rel="" class="">
+        <a class="" href="#/contact_request/{{singleContactRequest.id}}/edit">
+            <span class="fa fa-pencil"></span> Edit
+        </a>
+    </li>
+
+    <li title="" rel="" class="">
+        <a class="" href="#/contact_request/{{singleContactRequest.id}}/delete">
+
+            <span class="fa fa-remove"> </span> Delete
+        </a>
+    </li>
+
+</ul>
+
+
+<div class="row" >
+    <div class="col-md-12" >
+
+        <h3>Basic Info</h3>
+        <div class="fieldset">
+            <span class="label label-info ">
+                Full Name
+            </span>
+            <dl>
+                <dt>
+                <dd class="well">
+                    {{singleContactRequest.full_name| iif_empty:"..."}}
+                </dd>
+                </dt>
+            </dl>
+        </div>
+        <div class="fieldset">
+            <span class="label label-info ">
+                Phone
+            </span>
+            <dl>
+                <dt>
+                <dd class="well">
+                    {{singleContactRequest.phone| iif_empty:"..."}}
+                </dd>
+                </dt>
+            </dl>
+        </div>
+        <div class="fieldset">
+            <span class="label label-info ">
+                Email
+            </span>
+            <dl>
+                <dt>
+                <dd class="well">
+                    {{singleContactRequest.email| iif_empty:"..."}}
+                </dd>
+                </dt>
+            </dl>
+        </div>
+        <div class="fieldset">
+            <span class="label label-info ">
+                Subject
+            </span>
+            <dl>
+                <dt>
+                <dd class="well">
+                    {{singleContactRequest.subject| iif_empty:"..."}}
+                </dd>
+                </dt>
+            </dl>
+        </div>
+        <div class="fieldset">
+            <span class="label label-info ">
+                Message
+            </span>
+            <dl>
+                <dt>
+                <dd class="well">
+                    {{singleContactRequest.message| iif_empty:"..."}}
+                </dd>
+                </dt>
+            </dl>
+        </div>
+        <div class="fieldset">
+            <span class="label label-info ">
+                Location
+            </span>
+            <dl>
+                <dt>
+                <dd class="well">
+                    {{singleContactRequest.location| iif_empty:"..." }}
+                </dd>
+                </dt>
+            </dl>
+        </div>
+        <div class="fieldset">
+            <span class="label label-info ">
+                Zip Code
+            </span>
+            <dl>
+                <dt>
+                <dd class="well">
+                    {{singleContactRequest.zip_code| iif_empty:"..." }}
+                </dd>
+                </dt>
+            </dl>
+        </div>
+        <div class="fieldset">
+            <span class="label label-info ">
+                Is Provider
+            </span>
+            <dl>
+                <dt>
+                <dd class="well">
+                    {{singleContactRequest.is_provider| iif : "Is Provider" : "Is Not Provider"}}
+                </dd>
+                </dt>
+            </dl>
+        </div>
+    </div>
+
+</div>
+

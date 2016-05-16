@@ -1,0 +1,174 @@
+
+<!--============================================== header end===-->
+
+<section class="banner terms_banner">
+	<div class="container text-center">
+    	<h2 style="margin-bottom:30px !important">CONTACT US</h2>
+        <P class="color_white font_17 wow animated zoomIn">
+        	We’ve designed Phocus.io to empower you. If you have any comments or questions fill out the form below.
+        </P>
+    </div>
+</section>
+<!--============================================== banner end===-->
+
+<section class="contents">
+	<div class="container">
+    	<div class="row">
+            
+            <form ng-submit="saveContactRequest()">
+        	<div class="col-md-8 col-sm-8">
+            <div ng-show="success_contact" class="alert alert-success">
+                <span class="fa fa-check"></span> <strong>Success</strong>: Contact Request is submitted
+            </div>
+            	<div class="row">
+                	<div class="col-md-6 col-sm-6 form-group ">
+                    	<label>Full Name</label>
+                        <input required="" ng-model="submitData.full_name" type="text" class="form_control">
+                    </div>
+                    <div class="col-md-6 col-sm-6 form-group ">
+                    	<label>Phone Number</label>
+                        <input  ng-model="submitData.phone" type="text" class="form_control">
+                    </div>
+                </div>
+                <div class="row">
+                	<div class="col-md-6 col-sm-6 form-group ">
+                    	<label>Email</label>
+                        <input required="" ng-model="submitData.email" type="email" class="form_control">
+                    </div>
+                    <div class="col-md-6 col-sm-6 form-group">
+                		<label>Location</label>
+                        <input required="" ng-model="submitData.location" type="text" class="form_control">    
+                    </div>
+                </div>
+                <div class="row">
+                	<div class="col-md-6 col-sm-6 form-group ">
+                    	<label>Subject</label>
+                        <input required=""  ng-model="submitData.subject" type="text" class="form_control">
+                    </div>
+                     <div class="col-md-6 col-sm-6 col-xs-6 ">
+                        <label>Zip Code</label>
+                        <input required="" ng-model="submitData.zip_code" type="text" class="form_control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 form-group ">
+                        <label class="block">&nbsp;</label>
+                        <label class="checkBox_label checkboxclick"><input type="checkbox"> Are you a provider?</label>
+                    </div>
+                </div>
+                <div class="row">
+                	<div class="col-md-12 col-sm-12 form-group ">
+						<label>Message</label>
+                        <textarea required="" ng-model="submitData.message" class="form_control" style="height:102px !important"></textarea>
+                    </div>
+                </div>
+                <div class="right_to_center ">
+	                <input type="submit" value="Make Contact" class="primary_btn margin-right-0" style="padding:15px 68px 12px 62px !important" />
+                </div>
+                    
+            </div>
+            <div class="col-md-4 col-sm-4 ">
+            	<table width="100%" class="table noBorder margin-bottom-30">
+                	<tr>
+                    	<td width="40" valign="top"><i class="fa fa-map-marker"></i></td>
+                        <td class="font_14"><p class="margin-bottom-0 bold">Phocus.io</p>Minneapolis, MN</td>
+                    </tr>
+                    <tr>
+                    	<td><i class="fa fa-phone"></i></td>
+                        <td>(999) 518-260-8850</td>
+                    </tr>
+                    <tr>
+                    	<td><i class="fa fa-envelope-o"></i></td>
+                        <td>hello@phocus.io</td>
+                    </tr>
+                </table>
+                <p class="padding-left-5">For more information check our <span class="bold">FAQ</span></p>
+                <hr />
+                <p class="contact_social">
+                	<a href="https://www.facebook.com/phocus.io/timeline"><i class="fa fa-facebook"></i></a>
+                    <a href="https://twitter.com/Phocus_io"><i class="fa fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/phocus-io?trk=top_nav_home"><i class="fa fa-linkedin"></i></a>
+                </p>
+            </div>
+                </form>
+        </div>
+        <div id="FAQ" class="faq faqlist">
+			<h1 class="wow animated zoomIn">FAQ</h1>
+        	<div class="row">
+            	<div class="col-md-6 col-sm-6">
+                	<ul class="faq_list">
+                        <li class=" wow animated zoomInLeft" data-wow-delay="0.1s">
+                            <a href="javascript:void(0)">When will I see my Photos?</a>
+                            <div class="faq_data">
+                                <p>You will be able to view low-resolution preview copies of photos within 24 hours of the photo shoot.</p>
+                                <p>Final copies will be post processed and available within 3 days of your final selection.</p>
+                            </div>
+                        </li>
+                        <li >
+                            <a href="javascript:void(0)">Who has rights to final Photos?</a>
+                            <div class="faq_data">
+                                <p>You do. Once final photos are selected, and paid for, you will have unrestricted rights to use these photos.</p>
+                                <p>You do not have to worry about these photos being used elsewhere.</p>
+                                <p>With your permission, Phocus.io and photographer may use copies of these pictures to provide examples on Phocus.io web site and photographer’s site of work done. If you do not provide such permission, these photos will not be used.</p>
+                            </div>
+                        </li>
+                        <li >
+                            <a href="javascript:void(0)">Privacy: Will my photos be shared with others?</a>
+                            <div class="faq_data">
+                                <p>Not without your permission. We will respect your choice to share or keep your photos private. Photos that you see on our site have been authorized to be shared.</p>
+                                <p>You can indicate that your photos may be displayed by Phocus.io and your Photographer when you check-out and provide feedback on your shoot, otherwise they will be kept private. Such permission to display these photos does not include or imply permission for any other commercial use or reuse of these photos.</p>
+                            </div>
+                        </li>
+                        <li >
+                            <a href="javascript:void(0)">What size will final photos be?</a>
+                            <div class="faq_data">
+                                <p>Final selected photos will be post processed, and will be available in a zip file, for download.</p>
+                                <p>These will be high resolution at 300 dpi (3300 x 2200 px)</p>
+                            </div>
+                        </li>
+                 	</ul>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                	<ul class="faq_list">
+                        <li>
+                            <a href="javascript:void(0)">What if I need to reschedule or cancel?</a>
+                            <div class="faq_data">
+                                <p>48 hours or more: 100% refund if more than 48 hours in advance of shoot.</p>
+                                <p>24-48 hours: 50% refund or 75% credit for future shoot.</p>
+                                <p>Less than 24 hours: 75% credit for future shoot.</p>
+                            </div>
+                        </li>
+                        <li >
+                            <a href="javascript:void(0)">What if client delays timing of shoot?</a>
+                            <div class="faq_data">
+                                <p>If you know you will be delayed, let the photographer know; they may be able to reschedule or extend their time.</p>
+                                <p>But be aware that photographers may have other engagements scheduled after your shoot.</p>
+                                <p>If the start is delayed, photographers may not be able to stay.</p>
+                            </div>
+                        </li>
+                        <li >
+                            <a href="javascript:void(0)">Can time and scope of shoot be extended?</a>
+                            <div class="faq_data">
+                                <p>Yes, if the photographer is available.</p>
+                                <p>Photographers will do photographs based on selected packages and options within Scope of Work (SOW).</p>
+                                <p>Changes to SOW need to be authorized by the client by entering changes into Phocus.io system.</p>
+                                <p>Photographer will perform expanded SOW, if able ... Photographer may have conflicting time commitments.</p>
+                            </div>
+                        </li>
+                        <li >
+                            <a href="javascript:void(0)">Do you do Weddings?</a>
+                            <div class="faq_data">
+                                <p>No, our process of using predefined packages is not well suited to the flexibility and innovation that couples and their photographers bring to wedding events.</p>
+                                <p>You can enter a special request for a wedding photographer, and we can connect you with Phocus.io Photographers in your desired location and you can make your own arrangements with them.</p>
+                            </div>
+                        </li>
+                 	</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--============================================== CONTENT===-->
+
+<div ng-include src="'./resources/views/frontend/footer.html'"></div>

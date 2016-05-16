@@ -1,0 +1,33 @@
+<div class="row" ng-init="GetAssociation()">
+    <div class="col-lg-12">
+        <h1 class="page-header">Delete Version association 'PaperTrail::Version #{{association.id}}'</h1>
+    </div>
+</div>
+<ol class="breadcrumb">
+	<li><a href="#/dashboard">Dashboard</a></li>
+	<li><a href="#/paper_trail~version_association">Version Associations</a></li>
+    <li>
+      <a class="pjax" href="#/paper_trail~version_association/show/{{association.id}}">PaperTrail::VersionAssociation #{{association.id}}</a>
+    </li>
+    <li>Delete</li>
+</ol>
+
+<ul class="nav nav-tabs">
+	<li title="" rel="" > <a class="" href="#/paper_trail~version_association/show/{{association.id}}"> <span class="fa fa-info-circle"></span> Show</a> </li>
+    <li title="" rel="" class=""><a class="" href="#/paper_trail~version_association/edit/{{association.id}}"> <span class="fa fa-pencil"></span> Edit</a></li>
+    <li title="" rel="" class="active"> <a class="" href="#/paper_trail~version_association/export">  <span class="fa fa-remove"></span> Delete </a> </li>
+</ul>
+
+<h4>Are you sure you want to delete this version association “<strong>PaperTrail::VersionAssociation #{{association.id}}</strong>”? The following related items may be deleted or orphaned:</h4>
+
+<div>
+	<ul>
+        <li style="display:block; margin-top:10px">
+            <span class="label label-default">Version association</span>
+            <a class="pjax" href="#/paper_trail~version_association/show/{{association.id}}">PaperTrail::VersionAssociation #{{association.id}}</a>
+        </li>
+    </ul>
+    
+    <button class="btn btn-danger" ng-click="deleteAssociation(association.id)"><i class="fa fa-check"></i>Yes, I'm Sure</button>
+    <button class="btn" ng-click="CancelSave()"><i class="fa fa-remove"></i>Cancel</button>
+</div>

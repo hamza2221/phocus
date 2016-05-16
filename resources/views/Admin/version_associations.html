@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">List of Version associations</h1>
+    </div>
+</div>
+
+<ol class="breadcrumb">
+    <li class="active">Version associations</li>
+</ol>
+
+
+<ul class="nav nav-tabs">
+    <li title="" rel="" class="active"> <a class="" href="#/version_associations"> <span class="fa fa-list"></span> List</a> </li>
+    <li title="" rel="" class=""><a class="" href="#/version_associations/new"> <span class="fa fa-plus"></span> Add new</a></li>
+    <li title="" rel="" class=""> <a class="" href="#/version_associations/export">  <span class="fa fa-share-square-o"></span> Export </a> </li>
+    <li class="dropdown" style="float:right">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Selected items<b class="caret"></b></a>
+        <ul class="dropdown-menu" style="left:auto; right:0;">
+            <li><a ng-click="exportSelected()" href="javascript:void(0)">Export selected Version Associations</a></li>
+            <li><a href="javascript.:void(0)">Delete selected Version Associations</a></li>
+        </ul>
+    </li>
+    <li class="dropdown" style="float:right">
+        <a class="dropdown-toggle " data-toggle="dropdown" href="javascript:void(0)">Add filter<b class="caret"></b></a>
+        <ul class="dropdown-menu" style="left:auto; right:0;">
+            <li><a  href="javascript.:void(0)">Export selected Version Associations</a></li>
+            <li><a  href="#">Delete selected Version Associations</a></li>
+        </ul>
+    </li>
+
+</ul>
+<div style="clear:both"></div>
+<div class="well margin-top-20">
+
+
+    <div class="row" >
+        <div class="col-md-4 col-sm-4 relative" >
+            <div class="">
+                <input type="text" class="form-control padding-right-102" placeholder="Filter"/>    
+                <span class="searchBtns">
+                    <button type="submit" class="btn btn-primary radius-0 margin-right_4"><i class="fa fa-refresh"></i> Filter</button>
+                    <button type="submit"class="btn btn-info radius-left-0"><i class="fa fa-remove"></i></button>
+                </span>
+            </div>
+
+        </div>
+        <div class="col-md-8 col-sm-8 text-right" >
+            <a class="btn btn-info" href="/admin/super_admin/export?model_name=super_admin">Export found Version Associations</a>
+        </div>
+    </div>
+</div>
+
+<div>
+    
+    <table class="table table-condensed table-striped">
+        <thead>
+            <tr>
+                <th class="shrink">
+                    <label class="col-sm-10 checkbox" for="selectedAll">
+                        <input type="checkbox" id="selectedAll" ng-model="selectedAll" ng-click="selectAllLeads()" />
+                        Select All Fields 
+                    </label>
+                </th>
+                <th class="header" data-href="" rel="tooltip" title="" data-original-title="">Id</th>
+                <th class="header" data-href="" rel="tooltip" title="">Version</th>
+                <th class="header" data-href="" rel="tooltip" title="">Foreign Key Name</th>
+                <th class="header" data-href="" rel="tooltip" title="">Foreign Key</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="row in rows">
+                <td>
+                    <input type="checkbox" name="" id="" value="row.id" ng-model="row.Selected">
+                </td>
+                <td ng-bind="row.id"></td>
+                <td><a href="#">PaperTrail::Version#{{row.version_id}}</a></td>
+                <td ng-bind="row.foreign_key_name"></td>
+                <td ng-bind="row.foreign_key_id"></td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

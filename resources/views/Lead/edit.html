@@ -1,0 +1,82 @@
+<div class="row" ng-init="setupPage()">
+    <div class="col-lg-12">
+        <h1 class="page-header">Edit Lead 'Lead #{{lead.id}}'</h1>
+    </div>
+</div>
+
+<messages></messages>
+  
+    <ol class="breadcrumb">
+          <li class="false"><a class="pjax" href="#/dashboard">Dashboard</a></li>
+          <li class="false"><a class="pjax" href="#/leads">Leads</a></li>
+          <li class="false"><a class="pjax" href="#/lead/show/{{lead.id}}">Lead #{{lead.id}}</a></li>
+          <li class="active">Edit</li>
+    </ol>
+    
+    <ul class="nav nav-tabs">
+    	<li title="" rel="" class=""> 
+        	<a class="" href="#/lead/show/{{lead.id}}"> <span class="fa fa-info-circle"></span> Show</a> 
+        </li>
+        
+        <li title="" rel="" class="active">
+        	<a class="" href="">
+            	<span class="fa fa-pencil"></span> Edit
+        	</a>
+        </li>
+        
+        <li> 
+        	<a class="" href="#/lead/delete/{{lead.id}}">  
+            	<span class="fa fa-remove"></span> Delete 
+            </a> 
+        </li>
+    </ul>
+
+    <form class="form-horizontal" style="margin-top: 30px;" name="frmAdmin" ng-init="GetLead()" novalidate>
+      <span style="display:none" class="object-infos" data-model-label="Super admin" data-object-label="Super admin (new)"></span>
+      <fieldset>
+      <legend style="display:none">
+        <i class=""></i> Basic info
+      </legend>
+
+        <div class="form-group control-group text_type interested_in_field " id="lead_interested_in_field">
+          <label class="col-sm-2 control-label" for="lead_interested_in">Interested in</label>
+          <div class="col-sm-4 controls">
+            <textarea class="form-control"   cols="48" rows="3" ng-model="lead.interested_in" ></textarea>
+            <span class="help-block">Optional. </span>
+          </div>
+        </div>
+
+      <div class="form-group control-group string_type email_field " id="">
+        <label class="col-sm-2 control-label" for="super_admin_email">Email</label>
+          <div class="col-sm-4 controls">
+            <input value="" class="form-control" required="required" size="50" type="email" name="super_admin[email]" id="super_admin_email" ng-model="lead.email" ng-required="true">
+            <span class="help-block">Required. </span>
+          </div>
+      </div>
+
+      <input type="hidden" ng-model="lead.id" />
+    </fieldset>
+    <div class="form-group form-actions">
+      <div class="col-sm-offset-2 col-sm-10">
+        <input name="return_to" type="hidden" value="https://phocus.io/admin/super_admin">
+        <button class="btn btn-primary" ng-click="AddNew('save')" ng-disabled="frmAdmin.$invalid" data-disable-with="Save" name="_save" type="submit">
+          <i class="fa fa-check"></i>
+            Save
+        </button>
+    <span class="extra_buttons">
+    <button class="btn btn-info" ng-click="AddNew('add')" data-disable-with="Save and add another" name="_add_another" type="submit">
+    Save and add another
+    </button>
+    <button class="btn btn-info" ng-click="AddNew('edit')" data-disable-with="Save and edit" name="_add_edit" type="submit">
+    Save and edit
+    </button>
+    <button class="btn" data-disable-with="Cancel" ng-click="CancelSave()" formnovalidate name="_continue" type="submit">
+    <i class="fa fa-remove"></i>
+    Cancel
+    </button>
+    </span>
+    </div>
+    </div>
+    
+    </form>
+</div>

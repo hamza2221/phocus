@@ -1,0 +1,45 @@
+<div class="row" ng-init="GetTagByIDs()">
+    <div class="col-lg-12">
+        <h1 class="page-header">Delete Tag {{tag_type}}</h1>
+    </div>
+</div>
+<ol class="breadcrumb">
+	<li class="">Dashboard</li>
+	<li><a href="#/tag_{{tag_type}}">Tag {{tag_type}}</a></li>
+	<li> Multiple Delete</li>
+</ol>
+
+<ul class="nav nav-tabs">
+	<li title="" rel="" class="active">
+        <a class="" href="#/tag_{{tag_type}}">
+            <span class="fa fa-list"></span>
+            List
+        </a> 
+    </li>
+    <li title="" rel="" class="">
+        <a class="" href="#/tag_{{tag_type}}/new">
+            <span class="fa fa-plus"></span>
+            Add new
+        </a>
+    </li>
+    <li title="" rel="" class="">
+        <a class="" href="#/tag_{{tag_type}}/export"> 
+            <span class="fa fa-share-square-o"></span> 
+            Export 
+        </a> 
+    </li>
+</ul>
+
+
+<div>
+<ul ng-repeat="tag in tags">
+    <li style="display:block; margin-top:10px">
+        <span class="label label-default">Tag</span>
+        <a class="pjax" href="#/tag_{{tag_type}}/show/{{tag.id}}">{{tag.name}}</a>
+        <ul>
+        </ul>
+    </li>
+</ul>
+<button class="btn btn-danger" ng-click="DeleteTagByIds()"><i class="fa fa-check"></i>Yes, I'm Sure</button>
+<button class="btn"><i class="fa fa-remove"></i>Cancel</button>
+</div>

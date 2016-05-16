@@ -1,0 +1,189 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Site Administration</h1>
+    </div>
+</div>
+
+<messages></messages>
+<ol class="breadcrumb">
+    <li class="active">Dashboard</li>
+
+</ol>
+
+
+<ul class="nav nav-tabs">
+    <li title="" rel="" class="active"> <a class="" href="#/Dashboard"> <span class="fa fa-home"></span> Dashboard</a> </li>
+
+
+</ul>
+<div style="clear:both"></div>
+<div class="row margin-top-15"> 
+    <div class="col-md-12" >
+        <table class="table table-striped" width="100%">
+            <thead>
+                <tr>
+                    <th width="20%">Model Name</th>
+                    <th width="13%">Last Used</th>
+                    <th width="55%">Records</th>
+                    <th width="12%" class="text-center ">...</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#/admin">Admins</a></td>
+                    <td>{{admins_lastUsed}}</td>
+                    <td><div class="progress margin-bottom-0">
+                            <div class="progress-bar " role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{admins_percent}}%">
+                                <span >{{count_admins}}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="  actions">
+                        <a href="#/admin"><li class="glyphicon glyphicon-list"></li></a>
+                        <a href="#/admin/new"><li class="fa fa-plus"></li></a>
+                        <a href="#/admin/export"><li class="fa fa-share-square-o"></li></a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><a href="#/admin">Contact Requests</a></td>
+                    <td>{{contact_requests_lastUsed}}</td>
+                    <td>
+                        <div class="progress margin-bottom-0">
+                            <div class="progress-bar progress-bar-info " role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{contact_requests_percent}}%">
+                                <span class="">{{count_contact_requests}}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="  actions">
+                        <a href="#/contact_request"><li class="glyphicon glyphicon-list"></li></a>
+                        <a href="#/contact_request/new"><li class="fa fa-plus"></li></a>
+                        <a href="#/contact_request/export"><li class="fa fa-share-square-o"></li></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#/leads">Leads</a></td>
+                    <td>{{leads_lastUsed}}</td>
+                    <td>
+                        <div class="progress margin-bottom-0">
+                            <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{leads_percent}}%">
+                                <span class="">{{count_leads}}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="  actions">
+                        <a href="#/leads"><li class="glyphicon glyphicon-list"></li></a>
+                        <a href="#/lead/new"><li class="fa fa-plus"></li></a>
+                        <a href="#/lead/export"><li class="fa fa-share-square-o"></li></a>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><a href="#/providers">Providers</a></td>
+                    <td>{{providers_lastUsed}}</td>
+                    <td>
+                        <div class="progress margin-bottom-0">
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{providers_percent}}%">
+                                <span class="">{{count_providers}}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="  actions">
+                        <a href="#/providers"><li class="glyphicon glyphicon-list"></li></a>
+                        <a href="#/provider/new"><li class="fa fa-plus"></li></a>
+                        <a href="#/provider/export"><li class="fa fa-share-square-o"></li></a>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><a href="#/superadmin">Super Admins</a></td>
+                    <td>{{superadmins_lastUsed}}</td>
+                    <td>
+                        <div class="progress margin-bottom-0">
+                            <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{super_admins_percent}}%">
+                                <span class="">{{count_super_admins}}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class=" actions">
+                        <a href="#/superadmin"><li class="glyphicon glyphicon-list"></li></a>
+                        <a href="#/superadmin/new"><li class="fa fa-plus"></li></a>
+                        <a href="#/superadmin/export"><li class="fa fa-share-square-o"></li></a>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><a href="#/tag_gear">Tag Gears</a></td>
+                    <td>{{tag_gears_lastUsed}}</td>
+                    <td>
+                        <div class="progress margin-bottom-0">
+                            <div class="progress-bar progress-bar-success " role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{tag_gears_percent}}%">
+                                <span class="">{{count_tag_gears}}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class=" actions">
+                        <a href="#/tag_gear"><li class="glyphicon glyphicon-list"></li></a>
+                        <a href="#/tag_gear/new"><li class="fa fa-plus"></li></a>
+                        <a href="#/tag_gear/export"><li class="fa fa-share-square-o"></li></a>
+                        <a href="#/tag_gear/nestable"><i class="icon-move fa fa-arrows"></i></a>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><a href="#/tag_images">Tag Images</a></td>
+                    <td>{{tag_images_lastUsed}}</td>
+                    <td>
+                        <div class="progress margin-bottom-0">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{tag_images_percent}}%">
+                                <span class="">{{count_tag_images}}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="  actions">
+                        <a href="#/tag_image"><li class="glyphicon glyphicon-list"></li></a>
+                        <a href="#/tag_image/new"><li class="fa fa-plus"></li></a>
+                        <a href="#/tag_image/export"><li class="fa fa-share-square-o"></li></a>
+                        <a href="#/tag_image/nestable"><i class="icon-move fa fa-arrows"></i></a>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><a href="#/versions">Versions</a></td>
+                    <td>{{versions_lastUsed}}</td>
+                    <td>
+                        <div class="progress margin-bottom-0">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{versions_percent}}%">
+                                <span class="">{{count_versions}}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="  actions">
+                        <a href="#/paper_trail~version"><li class="glyphicon glyphicon-list"></li></a>
+                        <a href="#/paper_trail~version/new"><li class="fa fa-plus"></li></a>
+                        <a href="#/paper_trail~version/export"><li class="fa fa-share-square-o"></li></a>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><a href="#/version_associations">Version Associations</a></td>
+                    <td>{{version_associations_lastUsed}}</td>
+                    <td>
+                        <div class="progress margin-bottom-0">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{version_associations_percent}}%">
+                                <span class="">{{count_version_associations}}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="  actions">
+                    	<a href="#/paper_trail~version_association"><li class="glyphicon glyphicon-list"></li></a>
+                        <a href="#/paper_trail~version_association/new"><li class="fa fa-plus"></li></a>
+                        <a href="#/paper_trail~version_association/export"><li class="fa fa-share-square-o"></li></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

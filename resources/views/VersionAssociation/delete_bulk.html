@@ -1,0 +1,45 @@
+<div class="row" ng-init="GetAssociationByIDs()">
+    <div class="col-lg-12">
+        <h1 class="page-header">Following Version associations will be deleted:</h1>
+    </div>
+</div>
+<ol class="breadcrumb">
+	<li class="">Dashboard</li>
+	<li><a href="#/paper_trail~version_association">Version associations</a></li>
+	<li> Multiple Delete</li>
+</ol>
+
+<ul class="nav nav-tabs">
+	<li title="" rel="" class="active">
+        <a class="" href="#/paper_trail~version_association">
+            <span class="fa fa-list"></span>
+            List
+        </a> 
+    </li>
+    <li title="" rel="" class="">
+        <a class="" href="#/paper_trail~version_association/new">
+            <span class="fa fa-plus"></span>
+            Add new
+        </a>
+    </li>
+    <li title="" rel="" class="">
+        <a class="" href="#/paper_trail~version_association/export"> 
+            <span class="fa fa-share-square-o"></span> 
+            Export 
+        </a> 
+    </li>
+</ul>
+
+
+<div>
+<ul ng-repeat="association in associations">
+    <li style="display:block; margin-top:10px">
+        <span class="label label-default">Version association</span>
+        <a class="pjax" href="#/paper_trail~version_association/show/{{association.id}}">PaperTrail::VersionAssociation #{{association.id}}</a>
+        <ul>
+        </ul>
+    </li>
+</ul>
+<button class="btn btn-danger" ng-click="DeleteAssociationByIds()"><i class="fa fa-check"></i>Yes, I'm Sure</button>
+<button class="btn"><i class="fa fa-remove"></i>Cancel</button>
+</div>

@@ -1,0 +1,278 @@
+<div class="row" ng-init="setupPage()">
+    <div class="col-lg-12">
+        <h1 class="page-header" ng-bind="mainHeadAddEdit"></h1>
+    </div>
+</div>
+<messages></messages>
+    <ol class="breadcrumb">
+          <li class="false">
+            <a class="pjax" href="#/providers">Providers</a>
+          </li>
+          <li class="active" ng-bind="breadHeadAddEdit"></li>
+    </ol>
+    
+    <ul class="nav nav-tabs">
+    	<li title="" rel="" class=""> <a class="" href="#/providers"> <span class="fa fa-list"></span> List</a> </li>
+        <li title="" rel="" class="active"><a class="" href=""> <span class="fa fa-plus"></span>
+        <span ng-bind="tabHeadAddEdit"></span></a></li>
+        <li ng-show="tabHeadAddEdit!='Edit'" title="" rel="" class=""> <a class="" href="#/provider/export">  <span class="fa fa-share-square-o"></span> Export </a> </li>
+        <li ng-show="tabHeadAddEdit=='Edit'" title="" rel="" class=""> <a class="" href="#/providers/delete/{{provider.id}}">  <span class="fa fa-remove"></span> Delete </a> </li>
+    </ul>
+
+    <form class="form-horizontal" style="margin-top: 30px;" name="frmAdmin" ng-init="GetProvider()" novalidate>
+      <span style="display:none" class="object-infos" data-model-label="Super admin" data-object-label="Super admin (new)"></span>
+      
+      <fieldset>
+          <legend style="display:none">
+            <i class=""></i> Basic info
+          </legend>
+    
+    
+          <div class="form-group control-group string_type email_field " id="">
+            <label class="col-sm-2 control-label" for="super_admin_email">Email</label>
+              <div class="col-sm-6 controls">
+                <input value="" class="form-control" required="required" size="50" type="email" name="super_admin[email]" id="super_admin_email" ng-model="provider.email" ng-required="true">
+                <span class="help-block">Required. </span>
+                <span class="help-block text-red" ng-bind="email_error">Required. </span>
+              </div>
+          </div>
+          <div class="clear"></div>
+          
+          <div class="form-group control-group password_type password_field" id="provider_password_field">
+              <label class="col-sm-2 control-label" for="provider_password">Password</label>
+              <div class="col-sm-6 controls">
+                  <input class="form-control" id="provider_password" name="provider[password]" required="required" size="50" type="password" value="" ng-model="provider.password"> 
+                  <span class="help-block">Required. Length of 8-72.</span>
+                  <span class="help-block text-red" ng-bind="password_error">Required. </span>
+                  
+              </div>
+          </div>
+          <div class="clear"></div>
+          
+          <div class="form-group control-group password_type password_field" id="provider_password_field">
+              <label class="col-sm-2 control-label" for="provider_password">Password confirmation</label>
+              <div class="col-sm-6 controls">
+                  <input class="form-control" name="provider[password_confirmation]" required="required" size="50" type="password" ng-model="provider.password_confirmation"> 
+                  <span class="help-block">Required.</span>
+                  
+              </div>
+          </div>
+          <div class="clear"></div>
+          
+          <div class="form-group control-group string_type name_field" id="provider_name_field">
+              <label class="col-sm-2 control-label" for="provider_name">Name</label>
+              <div class="col-sm-6 controls">
+                  <input class="form-control" id="provider_name" name="provider[name]" required="required" size="50" type="text" ng-model="provider.name">
+                  <span class="help-block">Required.</span>
+              </div>
+          </div>
+          <div class="clear"></div>
+    
+          <div class="form-group control-group paperclip_type picture_field" id="provider_picture_field">
+              <label class="col-sm-2 control-label" for="provider_picture">Picture</label>
+              <div class="col-sm-6 controls">
+                  <div class="toggle">
+                      <img class="img-thumbnail margin-bottom-5" ng-src="{{image_source}}" ng-show="showSelectedImage" width="100" height="100">
+                      <input type="file" id="picture" name="picture" required="required" onchange="angular.element(this).scope().setFile(this)" accept="image/*">
+                  
+                      <!--<img ng-src="{{imageSrc}}" width="100" height="100" />
+                      <input type="file" id="picture" name="picture" ng-file-select="onFileSelect($files)"/>-->
+                  </div>
+                  <span class="help-block">Required.</span>
+              </div>
+          </div>
+          <div class="clear"></div>
+    
+          <div class="form-group control-group integer_type years_experience_field" id="provider_years_experience_field">
+              <label class="col-sm-2 control-label" for="provider_years_experience">Years experience</label>
+              <div class="col-sm-3 controls">
+                  <input class="form-control" id="provider_years_experience" min="0" name="provider[years_experience]" required="required" type="number" ng-model="provider.years_experience"> 
+                  <span class="help-block">Required.</span>
+              </div>
+          </div>
+          <div class="clear"></div>
+    
+          <div class="form-group control-group string_type zipcode_field" id=
+                "provider_zipcode_field">
+                    <label class="col-sm-2 control-label" for=
+                    "provider_zipcode">Zipcode</label>
+                    <div class="col-sm-6 controls">
+                        <input class="form-control" id="provider_zipcode" name="provider[zipcode]" required="required" size="50" type="text" ng-model="provider.zipcode"> 
+                        <span class="help-block">Required.</span>
+                    </div>
+          </div>
+          <div class="clear"></div>
+    
+          <div class=
+                "form-group control-group string_type phone_number_field" id=
+                "provider_phone_number_field">
+                    <label class="col-sm-2 control-label" for=
+                    "provider_phone_number">Phone number</label>
+                    <div class="col-sm-6 controls">
+                        <input class="form-control" id="provider_phone_number" name="provider[phone_number]" required="required" size="50" type="text" ng-model="provider.phone_number"> 
+                        <span class="help-block">Required.</span>
+                    </div>
+          </div>
+          
+          <div class="form-group control-group string_type portfolio_field" id="provider_portfolio_field">
+            <label class="col-sm-2 control-label" for="provider_portfolio">Portfolio</label>
+            <div class="col-sm-6 controls">
+                <input type="text" name="provider[portfolio]" id="provider_portfolio" class="form-control" ng-model="provider.portfolio"> 
+                <span class="help-block">Optional.</span>
+                <span class="help-block text-red" ng-bind="portfolio_error"></span>
+            </div>
+          </div>
+          <div class="clear"></div>
+    
+          <div class=
+                "form-group control-group string_type alternate_number_field" id=
+                "provider_alternate_number_field">
+                    <label class="col-sm-2 control-label" for=
+                    "provider_alternate_number">Alternate number</label>
+                    <div class="col-sm-6 controls">
+                        <input class="form-control" id="provider_alternate_number"
+                        name="provider[alternate_number]" size="50" type="text" ng-model="provider.alternate_number">
+                        <span class="help-block">Optional.</span>
+                    </div>
+          </div>
+          <div class="clear"></div>
+    
+          <div class="form-group control-group string_type country_field" id="provider_country_field">
+                    
+              <label class="col-sm-2 control-label" for="provider_country">Country</label>
+              <div class="col-sm-3 controls">
+                  <div class="dropdown makePaymentDropdownMainDiv" auto-close="outsideClick">
+                      <button class="btn btn-default dropdown-toggle makePaymentDropdownBtn relative custom_button" type="button" 
+                      id="individualDrop" data-toggle="dropdown">
+                          {{seletedCountry}}<span class="downCaret btn btn-info"><i class="fa fa-caret-down"></i></span>
+                      </button>
+                      <span ng-show="submitted"><label class="error">Select an Individual</label></span>
+                      
+                      <ul class="dropdown-menu makePaymentDropdownUlStyle" role="menu" aria-labelledby="individualDrop">
+                          <input disable-auto-close type="search" ng-model="serchFilter" class="makePaymentDropdownSearchBox" placeholder="Search"></input>
+                          <li role="presentation" ng-repeat="indi in allStates | filter: serchFilter">
+                              <a role="menuitem" ng-click="selectEntity(indi)">{{indi.name}}</a>
+                          </li>  
+                      </ul>
+                  </div>
+                  
+                  <div class="help-block">Required.</div>
+              </div>
+              
+          </div>
+          <div class="clear"></div>
+    
+          <div class="form-group control-group string_type work_area_radio_field" id="provider_work_area_radio_field">
+              <label class="col-sm-2 control-label" for="provider_work_area_radio">Work area radio</label>
+              <div class="col-sm-6 controls">
+                  <input class="form-control" id="provider_work_area_radio" ng-model="provider.work_area_radio"
+                  name="provider[work_area_radio]" size="50" type="text">
+                  <span class="help-block">Optional.</span>
+              </div>
+          </div>
+          <div class="clear"></div>
+          
+          <div class="form-group control-group string_type work_area_radio_field" id="provider_work_area_radio_field">
+              <label class="col-sm-2 control-label" for="provider_work_area_radio">Tags</label>
+              <div class="col-sm-10 controls">
+                <div class="ra-multiselect">
+                  
+                  <div class="ra-multiselect-header ui-helper-clearfix">
+                    <input type="search" placeholder="Search" class="form-control ra-multiselect-search" ng-model="filterListTags">
+                  </div>
+                  
+                  
+                  <div class="ra-multiselect-column ra-multiselect-left">
+                    <div class="wrapper">
+                      <select class="form-control ra-multiselect-selection" multiple="multiple" ng-model="availableTags">
+                        <option ng-repeat="tag in tags | filter:filterListTags" value="{{tag.id}}" title="{{tag.name}}">{{tag.name}}</option>
+                      </select>
+                    </div>
+                    <a href="javascript:void(0)" ng-click="chooseAll()" class="ra-multiselect-item-add-all"><span class="ui-icon ui-icon-circle-triangle-e"></span>Choose all</a>
+                  </div>
+    
+                  <div class="ra-multiselect-column ra-multiselect-center">
+                    <a href="javascript:void(0)" ng-click="addTag()" class="ui-icon ui-icon-circle-triangle-e ra-multiselect-item-add">&nbsp;</a> <br>
+                    <a href="javascript:void(0)" ng-click="removeTag()" class="ui-icon ui-icon-circle-triangle-w ra-multiselect-item-remove">&nbsp;</a>
+                  </div>
+              
+                  <div class="ra-multiselect-column ra-multiselect-right">
+                    <div class="wrapper">
+                      <select class="form-control ra-multiselect-selection" multiple="multiple" ng-model="selectedTags">
+                        <option ng-repeat="tag in selectedObjects" value="{{tag.id}}" title="{{tag.name}}">{{tag.name}}</option>
+                      </select>
+                    </div>
+                    <a href="javascript:void(0)" ng-click="clearAll()" class="ra-multiselect-item-remove-all">
+                      <span class="ui-icon ui-icon-circle-triangle-w"></span>Clear all
+                    </a>
+                  </div>
+                </div>
+                
+                <div class="col-sm-12">
+                <span class="help-block">Optional.</span>
+                </div>
+              </div>
+              
+              
+              
+          </div>
+          <div class="clear"></div>
+          
+          <div class="form-group control-group paperclip_type" id="">
+              <label class="col-sm-2 control-label" for="">W9 form</label>
+              <div class="col-sm-6 controls">
+                  <div class="toggle">
+                      <input type="file" id="w9form" name="w9form" accept="application/pdf"/>
+                  </div><span class="help-block">Optional.</span>
+              </div>
+          </div>
+          <div class="clear"></div>
+    
+    
+          <input type="hidden" ng-model="provider.id" />
+        </fieldset>
+    
+      <div class="form-group form-actions">
+        <div class="col-sm-offset-2 col-sm-10">
+          
+          <button class="btn btn-primary" ng-click="AddNew('save')" ng-disabled="frmAdmin.$invalid" data-disable-with="Save" name="_save" type="submit">
+            <i class="icon-white icon-ok"></i>
+              Save
+          </button>
+          
+          <span class="extra_buttons">
+              <button class="btn btn-info" ng-click="AddNew('add')" data-disable-with="Save and add another" name="_add_another" type="submit">
+              Save and add another
+              </button>
+              
+              <button class="btn btn-info" ng-click="AddNew('edit')" data-disable-with="Save and edit" name="_add_edit" type="submit">
+              Save and edit
+              </button>
+              
+              <button class="btn" data-disable-with="Cancel" ng-click="CancelSave()" formnovalidate name="_continue" type="submit">
+              <i class="icon-remove"></i>
+              Cancel
+              </button>
+          </span>
+          
+        </div>
+      </div>
+    
+    </form>
+</div>
+<script language="javascript">
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function (e) {
+			$('.preview')
+				.attr('src', e.target.result)
+				.width(150)
+				.height(200);
+		};
+
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+</script>

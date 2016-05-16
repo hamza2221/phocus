@@ -1,0 +1,160 @@
+<div class="content" >
+  
+  <div class="page-header">
+    <h1>New Admin</h1>
+  </div>
+  
+  <ol class="breadcrumb">
+    <li class="false"> <a class="pjax" href="#/superadmin">Super Admins</a> </li>
+    <li class="active">Export</li>
+  </ol>
+  
+  <ul class="nav nav-tabs">
+  	<li title="" rel="" class=""> <a class="" href="#/superadmin"> <span class="fa fa-list"></span> List</a> </li>
+    <li title="" rel="" class=""><a class="" href="#/superadmin/new"> <span class="fa fa-plus"></span> Add new</a></li>
+    <li title="" rel="" class="active"> <a class="" href="#/superadmin/export">  <span class="fa fa-share-square-o"></span> Export </a> </li>
+  </ul>
+  
+  <form class="form-horizontal denser" method="post" id="adminExportFrm" accept-charset="UTF-8" action="superadmin/exportdata" target="_blank">
+  	<input name="_token" type="hidden" value="{{ CSRF_TOKEN }}">
+    <input name="utf8" type="hidden" value="1">
+ 
+    <input name="send_data" type="hidden" value="true">
+    <input name="selectedAdmins[]" type="hidden" value="{{ inputSelectedAdmin }}">
+    
+    <div class="toggle_list_container">
+    	<ul class="toggle_list">
+        	<li class="accordian1-directive">
+              <a href="javascript:void(0)"> Select fields to export</a>
+              <div class="toggle_data" style="display:block">
+                	
+                <fieldset id="fields_to_export">
+                  <div class="form-group control-group">
+                    <div class="controls">
+                      <div class="col-sm-2"></div>
+                      <label class="col-sm-10 checkbox" for="selectedAll">
+                        <input type="checkbox" id="selectedAll" ng-model="selectedAll" ng-click="checkAll()" />
+                        Select All Fields 
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group control-group">
+                    <label class="col-sm-2 control-label" data-original-title="Click to reverse selection" onclick="jQuery(this).siblings(&quot;.controls&quot;).find(&quot;input&quot;).click()" rel="tooltip">Fields from admins
+                    </label>
+                    
+                    <div class="col-sm-10 controls">
+                        <div ng-repeat="field in AdminFields">
+                            <label><input type="checkbox" name="{{field.Name}}" value="{{field.Value}}" ng-model="field.Selected" /> {{field.title}}</label>
+                        </div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group control-group">
+                    <label class="col-sm-2 control-label" data-original-title="Click to reverse selection" 
+                    onclick="jQuery(this).siblings(&quot;.controls&quot;).find(&quot;input&quot;).click()" rel="tooltip">Fields from associated versions</label>
+                    
+                    <div class="col-sm-10 controls">
+                        <div ng-repeat="field in associatedVersions">
+                            <label><input type="checkbox" name="{{field.Name}}" value="{{field.Value}}" ng-model="field.Selected" /> {{field.title}}</label>
+                        </div>
+                    </div>
+                  </div>
+                </fieldset>
+                    
+              </div>
+            </li>
+            
+            <li class="accordian2-directive">
+              <a href="javascript:void(0)">Options for csv</a>
+              <div class="toggle_data">
+              
+                <fieldset>
+                  <div class="form-group control-group">
+                    <label class="col-sm-2 control-label" for="csv_options_encoding_to">Encode to</label>
+                    <div class="col-sm-10 controls">
+                      <select name="encoding_to" id="csv_options_encoding_to">
+                        <option value="UTF-8"></option>
+                        <option value="UTF-8">UTF-8</option>
+                        <option value="UTF-16LE">UTF-16LE</option>
+                        <option value="UTF-16BE">UTF-16BE</option>
+                        <option value="UTF-32LE">UTF-32LE</option>
+                        <option value="UTF-32BE">UTF-32BE</option>
+                        <option value="UTF-7">UTF-7</option>
+                        <option value="ISO-8859-1">ISO-8859-1</option>
+                        <option value="ISO-8859-15">ISO-8859-15</option>
+                        <option value="IBM850">IBM850</option>
+                        <option value="MacRoman">MacRoman</option>
+                        <option value="Windows-1252">Windows-1252</option>
+                        <option value="ISO-8859-3">ISO-8859-3</option>
+                        <option value="IBM852">IBM852</option>
+                        <option value="ISO-8859-2">ISO-8859-2</option>
+                        <option value="Windows-1250">Windows-1250</option>
+                        <option value="IBM855">IBM855</option>
+                        <option value="ISO-8859-5">ISO-8859-5</option>
+                        <option value="KOI8-R">KOI8-R</option>
+                        <option value="MacCyrillic">MacCyrillic</option>
+                        <option value="Windows-1251">Windows-1251</option>
+                        <option value="IBM866">IBM866</option>
+                        <option value="GB2312">GB2312</option>
+                        <option value="GBK">GBK</option>
+                        <option value="GB18030">GB18030</option>
+                        <option value="Big5">Big5</option>
+                        <option value="Big5-HKSCS">Big5-HKSCS</option>
+                        <option value="EUC-TW">EUC-TW</option>
+                        <option value="EUC-JP">EUC-JP</option>
+                        <option value="ISO-2022-JP">ISO-2022-JP</option>
+                        <option value="Shift_JIS">Shift_JIS</option>
+                        <option value="EUC-KR">EUC-KR</option>
+                      </select>
+                      <p class="help-block">Choose output encoding. Leave empty to let current input encoding untouched: (UTF8)</p>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group control-group">
+                    <label class="col-sm-2 control-label" for="csv_options_skip_header">No header</label>
+                    <div class="col-sm-10 controls">
+                      <label class="checkbox">
+                        <input type="checkbox" name="skip_header" id="csv_options_skip_header" value="true">
+                      </label>
+                      <p class="help-block">Do not output a header (no fields description)</p>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group control-group">
+                    <label class="col-sm-2 control-label" for="csv_options_generator_col_sep">Column separator</label>
+                    <div class="col-sm-10 controls">
+                      <select name="col_sep" id="csv_options_generator_col_sep">
+                        <option value=","></option>
+                        <option value=",">&lt;comma&gt; ','</option>
+                        <option value=";">&lt;semicolon&gt; ';'</option>
+                        <option value="'	'">&lt;tabs&gt;</option>
+                      </select>
+                      <p class="help-block">Leave blank for default (',')</p>
+                    </div>
+                  </div>
+                </fieldset>
+                
+              </div>
+            </li>
+        </ul>
+    </div>
+    
+    
+    
+    
+    <div class="form-group form-actions">
+      <div class="col-sm-offset-2 col-sm-10">
+        <input name="return_to" type="hidden" value="/admin">
+        <input name="export_to" id="export_to" type="hidden">
+        
+        <button class="btn btn-primary" onClick="$('#export_to').val('csv')" type="submit" ng-disabled="(AdminFields | filter: field.Selected != true).length < 1"> 
+        	<i class="icon-white fa fa-check"></i> Export to csv 
+        </button>
+        <button class="btn btn-info" onClick="$('#export_to').val('json')" type="submit" ng-disabled="(AdminFields | filter: field.Selected != true).length < 1"> Export to json </button>
+        <button class="btn btn-info" onClick="$('#export_to').val('xml')" type="submit" ng-disabled="(AdminFields | filter: field.Selected != true).length < 1"> Export to xml </button>
+        <button class="btn" name="_continue" onClick="window.location.assign('#/superadmin'); return false;"> <i class="fa fa-remove"></i> Cancel </button>
+      </div>
+    </div>
+  </form>
+</div>

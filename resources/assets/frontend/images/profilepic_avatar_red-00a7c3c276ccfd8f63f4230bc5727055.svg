@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-221 312 169 169"
+	 style="enable-background:new -221 312 169 169;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#F4DFE3;stroke:#D0021B;}
+</style>
+<title>profilepic_avatar</title>
+<desc>Created with Sketch.</desc>
+<g id="Register-for-providers" sketch:type="MSPage">
+	<g id="register_providers" transform="translate(-1247.000000, -940.000000)" sketch:type="MSArtboardGroup">
+		<g id="Group-Copy" transform="translate(262.000000, 834.000000)" sketch:type="MSLayerGroup">
+			<g id="profilepic_avatar" transform="translate(1007.000000, 128.000000)" sketch:type="MSShapeGroup">
+				<g id="Profile-Pic">
+					<circle id="Oval-17" class="st0" cx="-158.5" cy="374.5" r="62.5"/>
+					<g id="Profile-pic" transform="translate(36.111703, 31.915865)">
+						<g id="avatar-icon" transform="translate(0.012576, 0.287157)">
+							<path id="Stroke-3" class="st0" d="M-170.2,365.5H-221l0,0C-208,349.1-183.2,349.1-170.2,365.5L-170.2,365.5L-170.2,365.5z"
+								/>
+							<path id="Stroke-7" class="st0" d="M-195.6,350.3c-8.9,0-16.2-13-16.2-21.9s7.2-16.2,16.2-16.2s16.2,7.3,16.2,16.2
+								S-186.6,350.3-195.6,350.3z"/>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

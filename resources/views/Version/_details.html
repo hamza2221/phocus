@@ -1,0 +1,134 @@
+<span style="display:none" class="object-infos" data-model-label="Super admin" data-object-label="Super admin (new)"></span>
+      <fieldset>
+    <legend style="display:none"><i class="icon-chevron-down"></i> Basic info</legend>
+    <div class="form-group control-group polymorphic_association_type item_field " id="paper_trail_version_item_id_field">
+        <label class="col-sm-2 control-label" for="paper_trail_version_item_id">Item</label>
+        <div class="col-sm-10 controls">
+            <div class="form-inline">
+                <select class="form-control" ng-model="version.item_type" ng-change="GetItems()" ng-required="true">
+                    <option value=""></option>
+                    <option value="Admin">Admin</option>
+                    <option value="Customer">Customer</option>
+                    <option value="Provider">Provider</option>
+                    <option value="SuperAdmin">Super admin</option>
+                </select>
+                <select class="form-control" ng-model="version.item_id" ng-options="user.id as user.name for user in users" ng-required="true">
+                    <!-- <option value=""></option> -->
+                    <!-- <option ng-repeat="user in users" value="{{user.id}}">{{user.name}}</option> -->
+                </select>
+            </div>
+            <span class="help-block">Optional. </span>
+        </div>
+    </div>
+    
+    <div class="form-group control-group string_type event_field " id="paper_trail_version_event_field">
+        <label class="col-sm-2 control-label" for="paper_trail_version_event">Event</label>
+        <div class="col-sm-6 controls">
+            <input class="form-control" required="required" size="50" type="text" ng-model="version.event" ng-required="true">
+            <span class="help-block">Required. </span>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    
+    <div class="form-group control-group string_type whodunnit_field " id="paper_trail_version_whodunnit_field">
+        <label class="col-sm-2 control-label" for="paper_trail_version_whodunnit">Whodunnit</label>
+        <div class="col-sm-6 controls">
+            <input class="form-control" size="50" type="text" name="paper_trail_version[whodunnit]" id="paper_trail_version_whodunnit" ng-model="version.whodunnit">
+            <span class="help-block">Optional. </span>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    
+    <div class="form-group control-group text_type object_field " id="paper_trail_version_object_field">
+        <label class="col-sm-2 control-label" for="paper_trail_version_object">Object</label>
+        <div class="col-sm-5 controls">
+            <textarea class="form-control" data-richtext="false" data-options="{}" cols="48" rows="3" name="paper_trail_version[object]" id="paper_trail_version_object" ng-model="version.object"></textarea>
+            <span class="help-block">Optional. </span>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    
+    <div class="form-group control-group text_type object_changes_field " id="paper_trail_version_object_changes_field">
+        <label class="col-sm-2 control-label" for="paper_trail_version_object_changes">Object changes</label>
+        <div class="col-sm-5 controls">
+            <textarea class="form-control" data-richtext="false" data-options="{}" cols="48" rows="3" name="paper_trail_version[object_changes]" id="paper_trail_version_object_changes" ng-model="version.object_changes"></textarea>
+            <span class="help-block">Optional. </span>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    
+    <div class="form-group control-group integer_type transaction_id_field " id="paper_trail_version_transaction_id_field">
+        <label class="col-sm-2 control-label" for="paper_trail_version_transaction_id">Transaction</label>
+        <div class="col-sm-5 controls">
+            <input class="form-control" type="number" name="paper_trail_version[transaction_id]" id="paper_trail_version_transaction_id" ng-model="version.transaction_id">
+            <span class="help-block">Optional. </span>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    
+
+    <script type="text/ng-template" id="modalNewAssociation">
+        <div class="modal-header">
+            <h3 class="modal-title">New Version association</h3>
+        </div>
+        <div class="modal-body" >
+            <div ng-include src="'./resources/views/VersionAssociation/_details.html?12'" >
+        </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn cancel-action" type="button" ng-click="cancel()" style="background:none !important; color:#428bca;">
+				<i class="fa fa-remove"></i> Cancel
+			</button>
+			
+			<button class="btn btn-primary save-action" type="button" ng-click="AddNewAssociation()">
+				<i class="fa fa-check"></i> Save
+			</button>
+        </div>
+    </script>
+    
+    <div class="form-group control-group string_type version_association_field" id="paper_trail_version_version_association_field">
+          <label class="col-sm-2 control-label" >Version associations</label>
+          <div class="col-sm-10 controls">
+            <div class="ra-multiselect">
+              
+              <div class="ra-multiselect-header ui-helper-clearfix">
+                <input type="search" placeholder="Search" class="form-control ra-multiselect-search" ng-model="filter" ng-change="SearchAssociation(filter)">
+              </div>
+              
+              
+              <div class="ra-multiselect-column ra-multiselect-left">
+                <div class="wrapper">
+                  <select class="form-control ra-multiselect-selection" multiple="multiple" ng-model="availableAssociations">
+                  <option value="" ng-show="!allAssociation && associations.length==0" disabled selected>Too many objects, use search box above</option>
+                    <option ng-repeat="association in associations " value="{{association.id}}" title="PaperTrial::VersionAssociation#{{association.id}}">PaperTrial::VersionAssociation#{{association.id}}</option>
+                  </select>
+                </div>
+                
+                <a href="javascript:void(0)" ng-click="chooseAll()" class="ra-multiselect-item-add-all"><span class="ui-icon ui-icon-circle-triangle-e"></span>Choose all</a>
+              </div>
+
+              <div class="ra-multiselect-column ra-multiselect-center">
+                <a href="javascript:void(0)" ng-click="addAssociation(availableAssociations)" class="ui-icon ui-icon-circle-triangle-e ra-multiselect-item-add">&nbsp;</a> <br>
+                <a href="javascript:void(0)" ng-click="removeAssociation(selectedAssociations)" class="ui-icon ui-icon-circle-triangle-w ra-multiselect-item-remove">&nbsp;</a>
+              </div>
+          
+              <div class="ra-multiselect-column ra-multiselect-right">
+                <div class="wrapper">
+                  <select class="form-control ra-multiselect-selection" multiple="multiple" ng-model="AssociationSselected">
+                  <option value="" ng-show="allAssociation" disabled selected>Too many objects, use search box above</option>
+                    <option ng-repeat="association in selectedAssociations" value="{{association.id}}" title="PaperTrial::VersionAssociation#{{association.id}}">PaperTrial::VersionAssociation#{{association.id}}</option>
+                  </select>
+                </div>
+                <a href="javascript:void(0)" ng-click="clearAll()" class="ra-multiselect-item-remove-all">
+                  <span class="ui-icon ui-icon-circle-triangle-w"></span>Clear all
+                </a>
+              </div>
+            </div>
+            
+            <div ng-show="showAddAssociation">
+                <button class="create btn btn-info margin-left-5" ng-click="openAssociation()" >
+                <i class="fa fa-plus"></i> Add a new Version association</button>
+            </div>
+          </div>
+      </div>
+</fieldset>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap Dual Listbox</title>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+    <link rel="stylesheet" type="text/css" href="../src/bootstrap-duallistbox.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
+    <script src="../src/jquery.bootstrap-duallistbox.js"></script>
+  </head>
+  <body class="container">
+
+    <div class="row">
+
+      <div class="hero-unit">
+        <h1>Bootstrap Dual Listbox</h1>
+        <a id="link-ghp" class="btn btn-primary" href="https://github.com/istvan-ujjmeszaros/bootstrap-duallistbox" target="_blank"><span class="glyphicon glyphicon-link"></span> Github project page</a>
+      </div>
+
+      <p>
+        Bootstrap Dual Listbox is a responsive dual listbox widget optimized for Twitter Bootstrap. It works on all modern browsers and on touch devices.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <h2>Example with default values</h2>
+  <p>
+    The dual listbox is created from a select multiple by calling <code>.bootstrapDualListbox(settings);</code> on a selector. The selector can be any element, not just selects. When the method is called on a selector other than a select, then all select childrens are converted into dual list boxes.
+  </p>
+
+  <pre class="prettyprint">
+var demo1 = $('select[name="duallistbox_demo1[]"]').bootstrapDualListbox();</pre>
+  <form id="demoform" action="#" method="post">
+    <select multiple="multiple" size="10" name="duallistbox_demo1[]">
+      <option value="option1">Option 1</option>
+      <option value="option2">Option 2</option>
+      <option value="option3" selected="selected">Option 3</option>
+      <option value="option4">Option 4</option>
+      <option value="option5">Option 5</option>
+      <option value="option6" selected="selected">Option 6</option>
+      <option value="option7">Option 7</option>
+      <option value="option8">Option 8</option>
+      <option value="option9">Option 9</option>
+      <option value="option0">Option 10</option>
+    </select>
+    <br>
+    <button type="submit" class="btn btn-default btn-block">Submit data</button>
+  </form>
+  <script>
+    var demo1 = $('select[name="duallistbox_demo1[]"]').bootstrapDualListbox();
+    $("#demoform").submit(function() {
+      alert($('[name="duallistbox_demo1[]"]').val());
+      return false;
+    });
+  </script>
+
+  <h2>Example with custom settings</h2>
+
+  <div class="row">
+    <div class="col-md-5">
+      <pre class="prettyprint lang-js">
+var demo2 = $('.demo2').bootstrapDualListbox({
+  nonSelectedListLabel: 'Non-selected',
+  selectedListLabel: 'Selected',
+  preserveSelectionOnMove: 'moved',
+  moveOnSelect: false,
+  nonSelectedFilter: 'ion ([7-9]|[1][0-2])'
+});</pre>
+    </div>
+    <div class="col-md-7">
+      <select multiple="multiple" size="10" name="duallistbox_demo2" class="demo2">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3" selected="selected">Option 3</option>
+        <option value="option4">Option 4</option>
+        <option value="option5">Option 5</option>
+        <option value="option6" selected="selected">Option 6</option>
+        <option value="option7">Option 7</option>
+        <option value="option8">Option 8</option>
+        <option value="option9">Option 9</option>
+        <option value="option0">Option 10</option>
+        <option value="option0">Option 11</option>
+        <option value="option0">Option 12</option>
+        <option value="option0">Option 13</option>
+        <option value="option0">Option 14</option>
+        <option value="option0">Option 15</option>
+        <option value="option0">Option 16</option>
+        <option value="option0">Option 17</option>
+        <option value="option0">Option 18</option>
+        <option value="option0">Option 19</option>
+        <option value="option0">Option 20</option>
+      </select>
+      <script>
+        var demo2 = $('.demo2').bootstrapDualListbox({
+          nonSelectedListLabel: 'Non-selected',
+          selectedListLabel: 'Selected',
+          preserveSelectionOnMove: 'moved',
+          moveOnSelect: false,
+          nonSelectedFilter: 'ion ([7-9]|[1][0-2])'
+        });
+      </script>
+    </div>
+  </div>
+
+  <h2>Dynamically add options to the selects</h2>
+  <p>
+    The options must be added to/removed from the original select.<br>
+    Note that the <code>refresh</code> must be run on it after manipulating the options.
+  </p>
+  <p>
+    If there are some highlighted options in the lists, then calling the <code>refresh</code> method with the optional <code>true</code> parameter results the highlights to be removed. Example usage: <code>demo2.bootstrapDualListbox('refresh', true);</code><br>
+    It has meaning only when <code>moveOnSelect</code> setting is <code>false</code>.
+  </p>
+  <p>
+    <button id="demo2-add" type="button" class="btn btn-primary">Add options to demo2</button>
+    <button id="demo2-add-clear" type="button" class="btn btn-primary">Add with clearing highlights</button>
+  </p>
+  <pre class="prettyprint">
+$("#demo2-add").click(function() {
+  demo2.append('<option value="apples">Apples</option><option value="oranges" selected>Oranges</option>');
+  demo2.bootstrapDualListbox('refresh');
+});
+
+$("#demo2-add-clear").click(function() {
+  demo2.append('<option value="apples">Apples</option><option value="oranges" selected>Oranges</option>');
+  demo2.bootstrapDualListbox('refresh', true);
+});</pre>
+  <script>
+    $("#demo2-add").click(function() {
+      demo2.append('<option value="apples">Apples</option><option value="oranges" selected>Oranges</option>');
+      demo2.bootstrapDualListbox('refresh');
+    });
+
+    $("#demo2-add-clear").click(function() {
+      demo2.append('<option value="apples">Apples</option><option value="oranges" selected>Oranges</option>');
+      demo2.bootstrapDualListbox('refresh', true);
+    });
+  </script>
+
+</div>

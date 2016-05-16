@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="169px" height="169px" viewBox="0 0 169 169" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>profilepic_avatar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Register-for-providers" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="register_providers" sketch:type="MSArtboardGroup" transform="translate(-1247.000000, -940.000000)">
+            <g id="Group-Copy" sketch:type="MSLayerGroup" transform="translate(262.000000, 834.000000)">
+                <g id="profilepic_avatar" transform="translate(1007.000000, 128.000000)" sketch:type="MSShapeGroup">
+                    <g id="Profile-Pic">
+                        <circle id="Oval-17" stroke="#535A77" fill="#FCFCFC" cx="62.5" cy="62.5" r="62.5"></circle>
+                        <g id="Profile-pic" transform="translate(36.111703, 31.915865)" fill="#DEE0EA">
+                            <g id="avatar-icon" transform="translate(0.012576, 0.287157)">
+                                <path d="M50.8190142,53.5260185 L0.0483620841,53.5260185 L0.0483620841,53.5260185 C13.028473,37.1261544 37.8389033,37.1261544 50.8190142,53.5260185 L50.8190142,53.5260185 L50.8190142,53.5260185 Z" id="Stroke-3"></path>
+                                <path d="M25.4338244,38.2682511 C16.5120416,38.2682511 9.27952597,25.3061639 9.27952597,16.350714 C9.27952597,7.39526412 16.5120416,0.13545599 25.4338244,0.13545599 C34.3556071,0.13545599 41.5881228,7.39526412 41.5881228,16.350714 C41.5881228,25.3061639 34.3556071,38.2682511 25.4338244,38.2682511 Z" id="Stroke-7"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

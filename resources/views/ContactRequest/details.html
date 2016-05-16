@@ -1,0 +1,114 @@
+<div class="row" ng-init="setupPage()">
+    <div class="col-lg-12">
+        <h1 class="page-header" ng-bind="mainHeadAddEdit"></h1>
+    </div>
+</div>
+<messages></messages>
+<ol class="breadcrumb">
+    <li ><a href="#/dashboard">Dashboard </a></li>
+    <li class=""><a href="#/contact_request">Contact Request</a></li>
+    <li ng-show="tabHeadAddEdit=='Edit'" title="" rel="" class=""> <a class="" href="#/contact_request/show/{{request.id}}"> ContactRequest#{{request.id}}</a> </li>
+    <li class="active" ng-bind="breadHeadAddEdit"></li>
+</ol>
+
+<ul class="nav nav-tabs">
+        <li ng-show="tabHeadAddEdit!='Edit'" title="" rel="" class=""> <a class="" href="#/contact_request"> <span class="fa fa-list"></span> List</a> </li>
+        <li ng-show="tabHeadAddEdit=='Edit'" title="" rel="" class=""> <a class="" href="#/contact_request/show/{{request.id}}"> <span class="fa fa-info-circle"></span> Show</a> </li>
+        <li title="" rel="" class="active">
+            <a class="" href=""> 
+                <span ng-class="tabHeadAddEdit!='Edit'?'fa fa-plus':'fa fa-pencil'"></span>
+                <span ng-bind="tabHeadAddEdit"></span>
+            </a>
+        </li>
+        <li ng-show="tabHeadAddEdit!='Edit'" title="" rel="" class=""> <a class="" href="#/contact_request/export">  <span class="fa fa-share-square-o"></span> Export </a> </li>
+        <li ng-show="tabHeadAddEdit=='Edit'" title="" rel="" class=""> <a class="" href="#/contact_request/delete/{{request.id}}">  <span class="fa fa-remove"></span> Delete </a> </li>
+    </ul>
+
+<div class="row ">
+    <div class="col-sm-9  col-md-10 ">
+        <form class="form-horizontal" style="margin-top: 30px;" name="new_contact_request" ng-init="GetRequest()" novalidate="">
+        
+            <div class="form-group control-group">
+                <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                <label class="col-sm-2 control-label">Full Name</label>
+                <div class="col-sm-6 controls">
+                <input class="form-control"  ng-model="request.full_name" name="full_name" id="full_name" type="text" required>
+                <span class="help-block">Required. </span>
+                </div>
+            </div>
+
+            <div class="form-group control-group">
+                <label class="col-sm-2 control-label">Phone Number</label>
+                <div class="col-sm-6 controls">
+                <input class="form-control" ng-model="request.phone" name="phone" id="phone" type="text">
+                <span class="help-block">Optional. </span>
+                </div>
+            </div>
+            <div class="form-group control-group">
+                <label class="col-sm-2 control-label">Location</label>
+                <div class="col-sm-6 controls">
+                <input class="form-control" ng-model="request.location" id="location" type="text" >
+                <span class="help-block">Optional. </span>
+                </div>
+                
+            </div>
+            <div class="form-group control-group">
+                <label class="col-sm-2 control-label">Zip Code</label>
+                <div class="col-sm-6 controls">
+                <input class="form-control" ng-model="request.zip_code" id="zip_code" type="text" >
+                <span class="help-block">Optional. </span>
+                </div>
+            </div>
+            <div class="form-group control-group">
+                <label class="col-sm-2 control-label">Subject</label>
+                <div class="col-sm-6 controls">
+                <input class="form-control" ng-model="request.subject" id="subject" type="text" >
+                <span class="help-block">Optional. </span>
+                </div>
+            </div>
+            <div class="form-group control-group">
+                <label class="col-sm-2 control-label">Is Provider</label>
+                <div class="col-sm-6 controls">
+                <input class="checkbox" ng-model="request.is_provider" value="1" id="is_provider" type="checkbox">
+                </div>
+            </div>
+            <div class="form-group control-group">
+                <label class="col-sm-2 control-label">Message</label>
+                <div class="col-sm-6 controls">
+                <textarea ng-model="request.message"  class="form-control" id="message"></textarea>
+                <span class="help-block">Required. </span>
+                </div>
+                
+            </div>
+            <div class="form-group control-group">
+                <label class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-6 controls">
+                <input class="form-control" name="email" id="email" name="email" ng-model="request.email" type="email" required>
+                <span class="help-block">Required. </span>
+                </div>
+            </div>
+            <input type="hidden" ng-model="request.id" />
+            <div class="form-group form-actions">
+      <div class="col-sm-offset-2 col-sm-8">
+            <input name="return_to" type="hidden" value="https://phocus.io/admin/super_admin">
+            <button class="btn btn-primary" ng-click="AddNew('save')" ng-disabled="new_contact_request.$invalid" data-disable-with="Save" name="_save" type="submit">
+              <i class="fa fa-check"></i>
+                Save
+            </button>
+            <span class="extra_buttons">
+            <button class="btn btn-info" ng-click="AddNew('add')" data-disable-with="Save and add another" name="_add_another" type="submit">
+            Save and add another
+            </button>
+            <button class="btn btn-info" data-disable-with="Save and edit" ng-click="AddNew('edit')" name="_add_edit" type="submit">
+            Save and edit
+            </button>
+            <button class="btn" data-disable-with="Cancel" ng-click="CancelSave()" formnovalidate name="_continue" type="submit">
+            <i class="fa fa-remove"></i>
+            Cancel
+            </button>
+            </span>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

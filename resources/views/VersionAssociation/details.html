@@ -1,0 +1,72 @@
+<div class="row" ng-init="setupPage()">
+    <div class="col-lg-12">
+        <h1 class="page-header" ng-show="newHeading">New Version Association</h1>
+        <h1 class="page-header" ng-show="editHeading">Edit Version association 'PaperTrail::VersionAssociation #{{association.id}}'</h1>
+        
+    </div>
+</div>
+<messages></messages>
+    <ol class="breadcrumb">
+    	<li><a href="#/dashboard">Dashboard</a></li>
+        <li class="false"><a class="pjax" href="#/paper_trail~version_association">Version Associations</a></li>
+        
+        <li ng-show="showLink_BC">
+          <a class="pjax" href="#/paper_trail~version_association/show/{{association.id}}">PaperTrail::VersionAssociation #{{association.id}}</a>
+        </li>
+        
+        <li class="active" ng-bind="breadHeadAddEdit"></li>
+    </ol>
+    
+    <ul class="nav nav-tabs">
+    	<li ng-show="listTab"> <a class="" href="#/paper_trail~version_association"> <span class="fa fa-list"></span> List</a> </li>
+        <li ng-show="showTab"> <a class="" href="#/paper_trail~version_association/show/{{association.id}}"> <span class="fa fa-info-circle"></span> Show</a> </li>
+        
+        <li title="" rel="" class="active">
+        	<a class="" href="">
+            	<span class="fa {{addEditSign}}"></span>
+        		<span ng-bind="tabHeadAddEdit"></span>
+            </a>
+        </li>
+        
+        <li ng-show="tabHeadAddEdit!='Edit'"> 
+        	<a class="" href="#/paper_trail~version_association/export">  <span class="fa fa-share-square-o"></span> Export </a> 
+        </li>
+        
+        <li ng-show="tabHeadAddEdit=='Edit'"> 
+        	<a class="" href="#/paper_trail~version_association/delete/{{association.id}}">
+            	<span class="fa fa-remove"></span> Delete 
+            </a> 
+        </li>
+    </ul>
+
+    <form class="form-horizontal" style="margin-top: 30px;margin-bottom: 2%;" name="frmAdmin"  novalidate="">
+        <div ng-include src="'./resources/views/VersionAssociation/_details.html?11'"></div>
+        
+        <div class="form-group form-actions">
+          <div class="col-sm-1"><input  type="hidden" ng-model="association.id"></div>
+          <div class="col-sm-11">
+            
+            	<button class="btn btn-primary" ng-click="AddNewAssociation('save')" ng-disabled="frmAdmin.$invalid" data-disable-with="Save" name="_save" type="submit" style="margin-left: 17%;">
+                  <i class="fa fa-check"></i>
+                    Save
+                </button>
+                <span class="extra_buttons">
+                
+                    <button class="btn btn-info" ng-click="AddNewAssociation('add')" data-disable-with="Save and add another" name="_add_another" type="submit">
+                        Save and add another
+                    </button>
+                    
+                    <button class="btn btn-info" ng-click="AddNewAssociation('edit')" data-disable-with="Save and edit" name="_add_edit" type="submit">
+                        Save and edit
+                    </button>
+                    
+                    <button class="btn" data-disable-with="Cancel" ng-click="CancelSave()" formnovalidate name="_continue" type="submit">
+                        <i class="fa fa-remove"></i> Cancel
+                    </button>
+                    
+                </span>
+            
+          </div>
+        </div>
+    </form>
+</div>

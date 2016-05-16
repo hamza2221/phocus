@@ -1,0 +1,80 @@
+<div ng-init="GetAssociation()">
+	<span style="display:none" class="object-infos" data-model-label="Super admin" data-object-label="Super admin (new)"></span>
+      <fieldset>
+    	<legend style="display:none"><i class="icon-chevron-down"></i> Basic info</legend>
+    
+        <div  class="form-group control-group" >
+            <label class="col-sm-3 control-label" style="text-align:right" >Versions</label>
+            
+            <div class=" col-sm-8 controls">
+                <div class="input-group filtering-select col-sm-2" style="float:left; margin-right:30px">
+                    
+                    <div class="dropdown makePaymentDropdownMainDiv" auto-close="outsideClick">
+                        <button class="btn btn-default dropdown-toggle makePaymentDropdownBtn relative custom_button" type="button" 
+                        id="individualDrop" data-toggle="dropdown">
+                            {{selectedVersion}}<span class="downCaret btn btn-info"><i class="fa fa-caret-down"></i></span>
+                        </button>
+                        <span ng-show="submitted"><label class="error">Select an Individual</label></span>
+                        
+                        <ul class="dropdown-menu makePaymentDropdownUlStyle" role="menu" aria-labelledby="individualDrop">
+                            <input disable-auto-close type="search" ng-model="serchFilter" class="makePaymentDropdownSearchBox" placeholder="Search"></input>
+                            <li role="presentation" ng-repeat="version in versions | filter: serchFilter">
+                                <a role="menuitem" ng-click="selectEntity(version.id)">{{'PaperTrail::Version #'+version.id}}</a>
+                            </li>  
+                        </ul>
+                    </div>
+                    
+                    <!--<select class="form-control" ng-model="association.version_id" ng-options="version.id as ('PaperTrail::Version #'+version.id) for version in versions"></select>-->
+                </div>
+                <button style="margin-left: 1%;" ng-show="showAddVersion"  class="btn btn-info create" ng-click="openVersion()">
+                    <i class="fa fa-plus"></i> Add a new Version
+                </button>
+                
+                <button ng-show="showAddVersion"  class="btn btn-info create" ng-disabled="association.version_id ===undefined" ng-click="openVersion()">
+                    <i class="fa fa-pencil"></i> Edit this Version
+                </button>
+                <div style="clear:both"></div>
+                <span class="help-block">Optional. </span>     
+            </div>
+            
+        </div>
+        
+        <script type="text/ng-template" id="modalNewVersion">
+			<form class="form-horizontal" style="margin-top: 30px;" name="frmAdmin" ng-init="GetVersion()" novalidate>
+                <div class="modal-header">
+                    <h3 class="modal-title">New Version</h3>
+                </div>
+                <div class="modal-body" >
+                    <div ng-include src="'./resources/views/Version/_details.html?1'" ></div>
+                </div>
+				
+				<div class="modal-footer">
+					<button class="btn cancel-action" type="button" ng-click="cancel()" style="background:none !important; color:#428bca;">
+						<i class="fa fa-remove"></i> Cancel
+					</button>
+					
+					<button class="btn btn-primary save-action" ng-disabled="frmAdmin.$invalid" type="button" ng-click="AddNewVersion()">
+						<i class="fa fa-check"></i> Save
+					</button>
+				</div>
+			</form>	
+            </script>
+
+        <div class="form-group control-group string_type foreign_key_name_field " style="text-align:right" >
+            <label class="col-sm-3 control-label" for="">Foreign key name</label>
+            <div class="col-sm-9 controls">
+                <input class="form-control" size="50" type="text" ng-model="association.foreign_key_name">
+                <span class="help-block" style="display:block; text-align:left">Optional. </span>
+            </div>
+        </div>
+
+        <div class="form-group control-group integer_type foreign_key_id_field " style="text-align:right">
+            <label class="col-sm-3 control-label" for="">Foreign key</label>
+            <div class="col-sm-6 controls">
+                <input class="form-control" type="number" ng-model="association.foreign_key_id">
+                <span class="help-block" style="display:block; text-align:left">Optional. </span>
+            </div>
+        </div>
+		
+        <div style="clear:both"></div>
+	  </fieldset>

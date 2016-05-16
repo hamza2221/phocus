@@ -1,0 +1,32 @@
+<div class="row" ng-init="GetTag()">
+    <div class="col-lg-12">
+        <h1 class="page-header">Delete Tag {{tag_type}} '{{tag.name}}'</h1>
+    </div>
+</div>
+<ol class="breadcrumb">
+	<li class="">Dashboard</li>
+	<li><a href="#/tag_{{tag_type}}">Admins</a></li>
+	<li> <a href="#/tag_{{tag_type}}/edit/{{tag.id}}">{{tag.name}}</a></li>
+	<li>Delete</li>
+</ol>
+
+<ul class="nav nav-tabs">
+	<li title="" rel="" > <a class="" href="#/tag_{{tag_type}}/show/{{tag.id}}"> <span class="fa fa-info-circle"></span> Show</a> </li>
+    <li title="" rel="" class=""><a class="" href="#/tag_{{tag_type}}/edit/{{tag.id}}"> <span class="fa fa-pencil"></span> Edit</a></li>
+    <li title="" rel="" class="active"> <a class="" href="#/tag_{{tag_type}}/export">  <span class="fa fa-remove"></span> Delete </a> </li>
+</ul>
+
+<h4>Are you sure you want to delete this Tag {{tag_type}} <b>"{{tag.name}}"</b> ? The following related items may be deleted or orphaned:</h4>
+<ul>
+    <li style="display:block; margin-top:10px">
+        <span class="label label-default">Tag {{tag_type}}</span>
+        <a class="pjax" href="#/tag_{{tag_type}}/show/{{tag.id}}">{{tag.name}}</a>
+        <ul>
+        <li ng-repeat="ver in associatedVerIDs">Taggings Tagging#{{ver.id}}</li>
+        </ul>
+    </li>
+</ul>
+<div>
+<button class="btn btn-danger" ng-click="deleteTag(tag.id)"><i class="fa fa-check"></i>Yes, I'm Sure</button>
+<button class="btn" ng-click="CancelSave()"><i class="fa fa-remove"></i>Cancel</button>
+</div>

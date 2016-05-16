@@ -1,0 +1,172 @@
+
+<main class="main">
+    <div class="container">
+        <div class="contact-container">
+            <section id="contact-us__form-content">
+                <div ng-if="success_contact">
+                    <span  class="thanksleads" ></span> 
+                </div>
+                <form novalidate  name="contactRequestForm" ng-submit="saveContactRequest(contactRequestForm.$valid)"  class="ng-pristine ng-scope ng-invalid ">
+                    <div class="form-field floated-form-row-large">
+                        <label class="floated-left label-element" for="full_name"> Full Name </label>
+                        <input class="user-registration__input form-field__input-text ng-pristine ng-untouched ng-invalid " name="full_name"  ng-model="submitData.full_name" required="" type="text">
+                        <span class="error" ng-show="contactRequestForm.full_name.$error.required && (!contactRequestForm.$pristine || contactRequestForm.$submitted)">
+                            This field is required
+                        </span>
+                       
+                    </div>
+                    <div class="form-field floated-form-row-large">
+                        <label class="floated-left label-element" for="phone_number"> Phone Number </label>
+                        <input class="user-registration__input form-field__input-text ng-pristine ng-untouched ng-valid" name="phone_number" ng-model="submitData.phone" type="text">
+                    </div>
+                    <div class="form-field floated-form-row-large">
+                        <label class="floated-left label-element" for="email"> Email </label>
+                        <input class="user-registration__input form-field__input-text ng-pristine ng-untouched ng-valid-email ng-invalid " name="email" ng-class="{'error-border-validation': hasError('email', 'required')}" ng-model="submitData.email" required="" type="email">
+                        <span class="error" ng-show="contactRequestForm.email.$error.required && (!contactRequestForm.$pristine || contactRequestForm.$submitted)">
+                            This field is required
+                        </span>
+                        <span class="error" ng-show="contactRequestForm.email.$error.email && (!contactRequestForm.$pristine || contactRequestForm.$submitted)">
+                           Invalid email format 
+                        </span>    
+                    </div>
+                    <div class="form-field floated-form-row-large">
+                        <label class="floated-left label-element" for="location"> Location </label>
+                        <input class="user-registration__input form-field__input-text ng-pristine ng-untouched ng-valid" name="location" ng-model="submitData.location" type="text">
+                    </div>
+                    <div class="form-field floated-form-row-large">
+                        <label class="floated-left label-element" for="zipcode"> Zip Code </label>
+                        <input class="user-registration__input form-field__input-text ng-pristine ng-untouched ng-valid" name="zipcode" ng-model="submitData.zip_code" type="text">
+                    </div>
+                    <div class="form-field floated-form-row-large">
+                        <label class="floated-left label-element" for="subject"> Subject </label>
+                        <input class="user-registration__input form-field__input-text ng-pristine ng-untouched ng-valid" name="subject" ng-model="submitData.subject" type="text">
+                    </div>
+                    <div class="form-field floated-form-row-large is-provider">
+
+
+
+                        <label class="checkBox_label checkboxclick">
+                            <input ng-model="submitData.is_provider" value="1" type="checkbox"> Are you a provider?
+                        </label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-field textarea-message">
+                        <label class="floated-left label-element" for="message"> Message </label>
+                        <textarea class="user-registration__input form-field__input-text ng-pristine ng-untouched ng-invalid " cols="30" name="message" ng-class="{'error-border-validation': hasError('message', 'required')}" ng-model="request.message" required rows="4"></textarea>
+                        <span class="error" ng-show="contactRequestForm.message.$error.required && (!contactRequestForm.$pristine || contactRequestForm.$submitted)">
+                            This field is required
+                        </span>    
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="actions">
+                        <button id="submit_btn" class="button-bordered" type="submit" > <% contact_submit_text %><span ng-show="processing == '1'" class="animated_bulets"></span> </button>
+                    </div>
+                </form>
+                
+            </section>
+            <section id="contact-us__right-sidebar">
+                <div class="contact-us__address line">
+                    <div class="address-icon"></div>
+                    <div class="text"> <strong>Phocus.io</strong> <br>
+                        Minneapolis, MN </div>
+                </div>
+                <div class="contact-us__email line">
+                    <div class="email-icon"></div>
+                    <div class="text"> hello@phocus.io </div>
+                </div>
+                <div class="contact-us__more-info line"> <span> For more information check out <strong>FAQ</strong> </span>
+                    <hr>
+                    <div class="social-icons"> <a target="_blank" class="facebook-icon-color" href="https://www.facebook.com/phocus.io/timeline">facebook</a> <a target="_blank" class="twitter-icon-color" href="https://twitter.com/Phocus_io">twitter</a> <a target="_blank" class="linked-in-icon-color" href="https://www.linkedin.com/company/phocus-io?trk=top_nav_home">linkedin</a> </div>
+                </div>
+            </section>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+            <div id="FAQ" class="faq faqlist">
+                <h1 >FAQ</h1>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <ul class="faq_list">
+                            <li class=" " data-wow-delay="0.1s">
+                                <a href="javascript:void(0)">When will I see my Photos?</a>
+                                <div class="faq_data">
+                                    <p>You will be able to view low-resolution preview copies of photos within 24 hours of the photo shoot.</p>
+                                    <p>Final copies will be post processed and available within 3 days of your final selection.</p>
+                                </div>
+                            </li>
+                            <li >
+                                <a href="javascript:void(0)">Who has rights to final Photos?</a>
+                                <div class="faq_data">
+                                    <p>You do. Once final photos are selected, and paid for, you will have unrestricted rights to use these photos.</p>
+                                    <p>You do not have to worry about these photos being used elsewhere.</p>
+                                    <p>With your permission, Phocus.io and photographer may use copies of these pictures to provide examples on Phocus.io web site and photographer’s site of work done. If you do not provide such permission, these photos will not be used.</p>
+                                </div>
+                            </li>
+                            <li >
+                                <a href="javascript:void(0)">Privacy: Will my photos be shared with others?</a>
+                                <div class="faq_data">
+                                    <p>Not without your permission. We will respect your choice to share or keep your photos private. Photos that you see on our site have been authorized to be shared.</p>
+                                    <p>You can indicate that your photos may be displayed by Phocus.io and your Photographer when you check-out and provide feedback on your shoot, otherwise they will be kept private. Such permission to display these photos does not include or imply permission for any other commercial use or reuse of these photos.</p>
+                                </div>
+                            </li>
+                            <li >
+                                <a href="javascript:void(0)">What size will final photos be?</a>
+                                <div class="faq_data">
+                                    <p>Final selected photos will be post processed, and will be available in a zip file, for download.</p>
+                                    <p>These will be high resolution at 300 dpi (3300 x 2200 px)</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <ul class="faq_list">
+                            <li>
+                                <a href="javascript:void(0)">What if I need to reschedule or cancel?</a>
+                                <div class="faq_data">
+                                    <p>48 hours or more: 100% refund if more than 48 hours in advance of shoot.</p>
+                                    <p>24-48 hours: 50% refund or 75% credit for future shoot.</p>
+                                    <p>Less than 24 hours: 75% credit for future shoot.</p>
+                                </div>
+                            </li>
+                            <li >
+                                <a href="javascript:void(0)">What if client delays timing of shoot?</a>
+                                <div class="faq_data">
+                                    <p>If you know you will be delayed, let the photographer know; they may be able to reschedule or extend their time.</p>
+                                    <p>But be aware that photographers may have other engagements scheduled after your shoot.</p>
+                                    <p>If the start is delayed, photographers may not be able to stay.</p>
+                                </div>
+                            </li>
+                            <li >
+                                <a href="javascript:void(0)">Can time and scope of shoot be extended?</a>
+                                <div class="faq_data">
+                                    <p>Yes, if the photographer is available.</p>
+                                    <p>Photographers will do photographs based on selected packages and options within Scope of Work (SOW).</p>
+                                    <p>Changes to SOW need to be authorized by the client by entering changes into Phocus.io system.</p>
+                                    <p>Photographer will perform expanded SOW, if able ... Photographer may have conflicting time commitments.</p>
+                                </div>
+                            </li>
+                            <li >
+                                <a href="javascript:void(0)">Do you do Weddings?</a>
+                                <div class="faq_data">
+                                    <p>No, our process of using predefined packages is not well suited to the flexibility and innovation that couples and their photographers bring to wedding events.</p>
+                                    <p>You can enter a special request for a wedding photographer, and we can connect you with Phocus.io Photographers in your desired location and you can make your own arrangements with them.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+            </div>
+            <div class="successfull-request-modal white-popup mfp-hide" id="contact-request-success">
+                <div class="success-icon"></div>
+                <p>Thank you for making contact!</p>
+                <p>A member of our staff will reach out to you soon!</p>
+                <div class="actions">
+                    <button class="button-bordered" close-magnific-popup=""> Stay in this page </button>
+                    <button class="button-bordered" visit-to="/"> Go to homepage </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+

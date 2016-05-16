@@ -1,0 +1,59 @@
+<div class="row" ng-init="GetProvider()">
+    <div class="col-lg-12">
+        <h1 class="page-header">Details For Provider '{{provider.name}}'</h1>
+    </div>
+</div>
+<ol class="breadcrumb">
+	<li class="false"><a class="pjax" href="#/providers">Providers</a></li>
+	<li >{{provider.name}}</li>
+</ol>
+
+<ul class="nav nav-tabs">
+	<li title="" rel="" class="active"> <a class="" href=""> <span class="fa fa-info-circle"></span> Show</a> </li>
+    <li title="" rel="" class=""><a class="" href="#/provider/edit/{{provider.id}}"> <span class="fa fa-pencil"></span>  Edit</a></li>
+    <li title="" rel="" class=""> <a class="" href="#/provider/delete/{{provider.id}}">  <span class="fa fa-remove"></span> Delete </a> </li>
+</ul>
+
+<div class="fieldset">
+	<h4>Basic Info</h4>
+	<dl>
+		<dt><span class="label label-info">Email</span></dt>
+		<dd class="well" ng-bind="provider.email"></dd>
+        
+        <dt><span class="label label-info">Name</span></dt>
+		<dd class="well" ng-bind="provider.name"></dd>
+        
+        <dt ng-show="pictureshow"><span class="label label-info">Picture</span></dt>
+		<dd ng-show="pictureshow" ng-show="workarearadio" class="well">
+            <a target="_blank" href="./storage/profiles/{{provider.id}}/{{provider.picture}}">
+                <img class="img-thumbnail" width="50" height="50" ng-src="./storage/profiles/{{provider.id}}/{{provider.picture}}"/>
+            </a>
+        </dd>
+        
+        <dt ng-show="portfolioshow"><span class="label label-info">Portfolio</span></dt>
+		<dd ng-show="portfolioshow" class="well">
+        	<a target="_blank" href="{{provider.portfolio}}">{{provider.portfolio}}</a>
+        </dd>
+        
+        <dt ng-show="yearexpshow"><span class="label label-info">Years experience</span></dt>
+		<dd ng-show="yearexpshow" class="well" ng-bind="provider.years_experience"></dd>
+        
+        <dt ng-show="zipshow"><span class="label label-info">Zipcode</span></dt>
+		<dd ng-show="zipshow" class="well" ng-bind="provider.zipcode"></dd>
+        
+        <dt ng-show="phoneshow"><span class="label label-info">Phone number</span></dt>
+		<dd ng-show="phoneshow" class="well" ng-bind="provider.phone_number"></dd>
+        
+        <dt><span class="label label-info">Country</span></dt>
+		<dd class="well" ng-bind="provider.country"></dd>
+        
+        <dt ng-show="workarearadio"><span class="label label-info">Work area radio</span></dt>
+		<dd ng-show="workarearadio" class="well" ng-bind="provider.work_area_radio"></dd>
+        
+        <dt ng-show="providertags"><span class="label label-info">Tags</span></dt>
+		<dd ng-show="providertags" class="well">
+        	<span ng-repeat="tag in provider.tags">{{tag.name}}{{$last ? '' : ', '}}</span>
+        </dd>
+        
+	</dl>
+</div>

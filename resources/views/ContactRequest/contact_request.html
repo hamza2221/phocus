@@ -1,0 +1,227 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">List Of Contact Requests</h1>
+    </div>
+</div>
+<messages></messages>
+<ol class="breadcrumb">
+<li ><a href="#/">Dashboard</a></li>
+<li class="active">Contact requests</li>
+</ol>
+
+
+<ul class="nav nav-tabs">
+    <li title="" rel="" class="active">
+        <a class="" href="#/contact_request">
+            <span class="fa fa-list"></span>
+            List
+        </a> 
+    </li>
+    <li title="" rel="" class="">
+        <a class="" href="#/contact_request/new">
+            <span class="fa fa-plus"></span>
+            Add new
+        </a>
+    </li>
+    <li title="" rel="" class="">
+        <a class="" href="#/contact_request/export"> 
+            <span class="fa fa-share-square-o"></span> 
+            Export 
+        </a> 
+    </li>
+    <li class="dropdown dropdownblue" style="float:right">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="">Selected items
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" style="left:auto; right:0;">
+            <li>
+                <a ng-click="exportSelected()" style="cursor: pointer;">Export selected Contact requests</a>
+            </li>
+            <li>
+                <a style="cursor: pointer;" ng-click="GetSelectedToDelete()">Delete selected Contact requests
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown dropdownblue" style="float:right">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="">
+            Add filter
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" id="filters" style="left:auto; right:0;">
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('full_name')">Full Name</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('phone')">Phone Number</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('email')">Email</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('location')">Location</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('zip_code')">Zipcode</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('subject')">Subject</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('is_provider')">Is Provider</a>
+            </li>
+            <li>
+                <a style=" cursor: pointer;" ng-click="AddFilter('message')">Message</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<div style="margin-top:2%;">
+    <form class="pjax-form form-inline" novalidate  accept-charset="UTF-8">
+        <div class="well">
+        <div ng-repeat="filter in filters">
+            <span id="filters_box" name="{{'filter'+$index}}">
+                <p class="filter form-search">
+                    <span class="label label-info form-label btn-filter">
+                        <a style="cursor: pointer;" ng-click="RemoveFilters($index)" class="delete">
+                            <i class="fa fa-trash" style="color: white;"></i>
+                        </a> 
+                        {{filter.filter}}
+                    </span>
+                    <select class="switch-additionnal-fieldsets input-sm form-control" ng-model="filter.operator">
+                        <option value="like">Contains</option>
+                        <option value="is">Is exactly</option>
+                        <option value="starts_with">Starts with</option>
+                        <option value="ends_with">Ends with</option>
+                        <option disabled="disabled">---------</option>
+                        <option value="_not_null">Is present</option>
+                        <option value="_null">Is blank</option>
+                    </select>
+                    <input ng-hide="filter.operator=='_not_null' || filter.operator=='_null'" class="additional-fieldset input-sm form-control" style="display:inline-block;" type="text" ng-model="filter.query">
+                </p>
+            </span>
+        </div>
+            <hr class="filters_box" style="display:none">
+            <div class="input-group">
+                <input class="form-control input-small" name="query" placeholder="Filter" type="search" ng-model="query">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" ng-click="SearchRequest(-1)" >
+                        <i class="fa fa-refresh" ></i>
+                            Refresh
+                    </button>
+                    <button class="btn btn-info" ng-click="RemoveFilters()" id="remove_filter" title="Reset filters">
+                        <i class="fa fa-remove" ></i>
+                    </button>
+                </span>
+            </div>
+            <span style="float:right">
+                <a class="btn btn-info" href="javascript:void(0)" ng-click="exportFound()">Export Found Contact Requests</a>
+            </span>
+        </div>
+    </form>
+</div>
+
+<div>
+    
+    <table class="table table-condensed table-striped fixed table-list font-12" ng-init="SearchRequest()">
+        <thead>
+            <tr>
+                <th width="3%" class="shrink">
+                    <input type="checkbox" id="selectedAll" ng-model="selectedAll" ng-click="selectAllRequests()" />
+                </th>
+                <th class="{{header.class}}" data-href="" rel="tooltip" title="" ng-repeat="header in tableHeaders" width="{{header.width}}">
+                <span ng-show="sorting.reverseSort" class="caret_right caret_up"><i class="fa fa-caret-up"></i></span>
+                    <a style="cursor: pointer;" ng-click="SearchRequest(1,header.colName,
+                    sorting.reverseSort=!sorting.reverseSort,setNo)" >
+                        {{header.name}}
+                        <span ng-show="orderBy == header.colName"  >
+                            <span ng-show="!sorting.reverseSort" class="caret_right"><i class="fa fa-caret-down"></i></span>
+                            <span ng-show="sorting.reverseSort" class="caret_right"><i class="fa fa-caret-up"></i></span>
+                        </span>
+                    </a>
+                    
+                </th>
+                
+                
+                
+                <th class="last shrink" width="10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="request in requests">
+                <td>
+                    <input type="checkbox" name="" id="" value="request.id" ng-model="request.Selected">
+                </td>
+                <td ng-show="setNo==0" ng-bind="request.full_name"></td>
+                <td ng-show="setNo==0" ng-bind="request.phone"></td>
+                <td ng-show="setNo==0" ng-bind="request.location"></td>
+                <td ng-show="setNo==0" ng-bind="request.zip_code"></td>
+                <td ng-show="setNo==0" ng-bind="request.subject"></td>
+                <td ng-show="setNo==0" >
+                    <span style="margin-left: 40%;" ng-show="request.is_provider==1" class="label label-success">✓</span>
+                    <span style="margin-left: 40%;" ng-show="request.is_provider==0" class="label label-default">‒</span>
+                </td>
+                <td ng-show="setNo==0">
+                    <!-- <a href="#/contact_request/1/{{pageNumber}}/{{orderBy}}/{{sortOrder}}" >...</a> -->
+                    <a href="" ng-click="SearchRequest(pageNumber,orderBy,sortOrder,1)">...</a>
+                </td>
+
+                <td ng-show="setNo==1">
+                    <!-- <a href="#/contact_request/0/{{pageNumber}}/{{orderBy}}/{{sortOrder}}" >...</a> -->
+                    <a href="" ng-click="SearchRequest(pageNumber,orderBy,sortOrder,0)">...</a>
+                </td>
+                <td ng-show="setNo==1" ng-bind="request.message"></td>
+                <td ng-show="setNo==1" ng-bind="request.email"></td>
+                <td class="last links">
+                <ul class="inline list-inline">
+                  <li title="Show" rel="tooltip" class="icon show_member_link ">
+                    <a class="pjax" href="#/contact_request/show/{{request.id}}">
+                      <i class="fa fa-info-circle"></i>
+                      <span style="display:none">Show</span>
+                    </a>
+                  </li>
+                
+                  <li title="Edit" rel="tooltip" class="icon edit_member_link ">
+                    <a class="pjax" href="#/contact_request/edit/{{request.id}}">
+                      <i class="fa fa-pencil"></i>
+                      <span style="display:none">Edit</span>
+                    </a>
+                  </li>
+                
+                  <li title="Delete" rel="tooltip" class="icon delete_member_link ">
+                    <a class="pjax" href="#/contact_request/delete/{{request.id}}">
+                      <i class="fa fa-remove"></i>
+                      <span style="display:none">Delete</span>
+                    </a>
+                  </li>
+                </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div ng-show="!showAll">
+        <ul class="pagination">
+            <li ng-class="{disabled: currentPage == 1}">
+                <a style="cursor: pointer;" ng-click="SearchRequest(currentPage-1,orderBy,sortOrder,setNo)">« Prev</a>
+            </li>
+            <li ng-repeat="n in range"
+                ng-class="{active: n == currentPage-1}"
+            ng-click="SearchRequest(n+1,orderBy,sortOrder,setNo)">
+                <a href ng-bind="n + 1">1</a>
+            </li>
+            <li ng-class="{disabled: currentPage == limit}">
+                <a style="cursor: pointer;"  ng-click="SearchRequest(currentPage+1,orderBy,sortOrder,setNo)">Next »</a>
+            </li>
+        </ul>
+    </div>
+    <div ng-show="shouldShowAll">
+        <div class="row" ng-show="!showAll">
+            <div class="col-md-6">
+                <a class="show-all btn btn-default clearfix pjax" href="" ng-click="SearchRequest(-2,orderBy,sortOrder,setNo)">Show all</a>
+            </div>
+        </div>
+    </div>    <div class="clearfix total-count">
+    {{(showAll)?requests.length:total}} Contact Requests
+    </div>
+</div>

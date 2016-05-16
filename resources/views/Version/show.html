@@ -1,0 +1,45 @@
+<div class="row" ng-init="GetVersion()">
+    <div class="col-lg-12">
+        <h1 class="page-header">Details for Version 'PaperTrail::Version #{{version.id}}'</h1>
+    </div>
+</div>
+<ol class="breadcrumb">
+	<li class="false">
+      <a class="pjax" href="#/dashboard">Dashboard</a>
+    </li>
+    
+    <li class="false">
+      <a class="pjax" href="#/paper_trail~version">Versions</a>
+    </li>
+    
+    <li class="false">PaperTrail::Version #{{version.id}}</li>
+</ol>
+
+<ul class="nav nav-tabs">
+	<li title="" rel="" class="active"> <a class="" href=""> <span class="fa fa-info-circle"></span> Show</a> </li>
+    <li title="" rel="" class=""><a class="" href="#/paper_trail~version/edit/{{version.id}}"> <span class="fa fa-pencil"></span>  Edit</a></li>
+    <li title="" rel="" class=""> <a class="" href="#/paper_trail~version/delete/{{version.id}}">  <span class="fa fa-remove"></span> Delete </a> </li>
+</ul>
+
+<div class="fieldset">
+	<h4>Basic Info</h4>
+	<dl>
+		<dt ng-show="showItem"><span class="label label-info">Item</span></dt>
+		<dd ng-show="showItem" class="well" ng-bind="version.item_type"></dd>
+        
+		<dt ng-show="showEvent"><span class="label label-info">Event</span></dt>
+		<dd ng-show="showEvent" class="well" ng-bind="version.event"></dd>
+		
+        <dt ng-show="showWhodunnit"><span class="label label-info">Whodunnit</span></dt>
+		<dd ng-show="showWhodunnit" class="well" ng-bind="version.whodunnit"></dd>
+        
+		<dt ng-show="showObject"><span class="label label-info">Object</span></dt>
+		<dd ng-show="showObject" class="well" ng-bind="version.object" style="overflow:auto"></dd>
+        
+		<dt ng-show="showObjectChng"><span class="label label-info">Object changes</span></dt>
+		<dd ng-show="showObjectChng" class="well" ng-bind="version.object_changes" style="overflow:auto"></dd>
+        
+		<dt ng-show="showTransaction"><span class="label label-info">Transaction</span></dt>
+		<dd ng-show="showTransaction" class="well" ng-bind="version.transaction_id"></dd>
+	</dl>
+</div>

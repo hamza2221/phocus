@@ -1,0 +1,119 @@
+<div class="row" ng-init="setupPage()">
+    <div class="col-lg-12">
+        <h1 class="page-header" ng-bind="mainHeadAddEdit"></h1>
+    </div>
+</div>
+
+<messages></messages>
+  
+    <ol class="breadcrumb">
+          <li class="false">
+            <a class="pjax" href="#/dashboard">Dashboard</a>
+          </li>
+          <li class="false">
+            <a class="pjax" href="#/package">Packages</a>
+          </li>
+          <li class="active" ng-bind="breadHeadAddEdit"></li>
+    </ol>
+    
+    <ul class="nav nav-tabs">
+    	<li title="" rel="" class=""> <a class="" href="#/package"> <span class="fa fa-list"></span> List</a> </li>
+        <li title="" rel="" class="active">
+        	<a class="" href=""> <span class="fa fa-plus"></span> Add new</a>
+        </li>
+        <li ng-show="tabHeadAddEdit!='Edit'" title="" rel="" class=""> <a class="" href="#/package/export">  <span class="fa fa-share-square-o"></span> Export </a> </li>
+        <li ng-show="tabHeadAddEdit=='Edit'" title="" rel="" class=""> <a class="" href="#/package/delete/{{setting.id}}">  <span class="fa fa-remove"></span> Delete </a> </li>
+    </ul>
+
+    <form class="form-horizontal" style="margin-top: 30px;" name="frmAdmin" ng-init="GetSetting()" novalidate>
+      <span style="display:none" class="object-infos" data-model-label="Super admin" data-object-label="Setting (new)"></span>
+      <fieldset>
+          <legend style="display:none">
+            <i class=""></i> Basic info
+          </legend>
+          
+          <div class="form-group control-group text_type interested_in_field ">
+            <label class="col-sm-2 control-label" for="lead_interested_in">Name</label>
+            <div class="col-sm-4 controls">
+              <input class="form-control" required="required" size="50" type="text" ng-model="package.name" ng-required="true">
+              <span class="help-block">Required. </span>
+            </div>
+          </div>
+          
+          <div class="form-group control-group text_type interested_in_field ">
+            <label class="col-sm-2 control-label" for="lead_interested_in">Desciption</label>
+            <div class="col-sm-6 controls">
+              <textarea class="form-control" required="required" size="50" ng-model="package.description" ng-required="true"></textarea>
+              <span class="help-block">Required. </span>
+            </div>
+          </div>
+          
+          <div class="form-group control-group paperclip_type picture_field">
+              <label class="col-sm-2 control-label" for="provider_picture">Picture</label>
+              <div class="col-sm-6 controls">
+                  <div class="toggle">
+                      <img class="img-thumbnail margin-bottom-5" ng-src="{{image_source}}" ng-show="showSelectedImage" width="100" height="100">
+                      <input type="file" id="picture" name="picture" required="required" onchange="angular.element(this).scope().setFile(this)" accept="image/*">
+                  </div>
+                  <span class="help-block">Required.</span>
+              </div>
+          </div>
+          
+          <div class="form-group control-group text_type interested_in_field ">
+            <label class="col-sm-2 control-label" for="stills">Stills</label>
+            <div class="col-sm-2 controls">
+              <input class="form-control" required="required" size="50" type="text" ng-model="package.stills" ng-required="true">
+              <span class="help-block">Required. </span>
+            </div>
+          </div>
+          
+          <div class="form-group control-group text_type interested_in_field ">
+            <label class="col-sm-2 control-label" for="stills">Subjects</label>
+            <div class="col-sm-2 controls">
+              <input class="form-control" required="required" size="50" type="text" ng-model="package.subjects" ng-required="true">
+              <span class="help-block">Required. </span>
+            </div>
+          </div>
+          
+          <div class="form-group control-group text_type interested_in_field ">
+            <label class="col-sm-2 control-label" for="stills">Time on site</label>
+            <div class="col-sm-2 controls">
+              <input class="form-control" required="required" size="50" type="text" ng-model="package.time_on_site" ng-required="true">
+              <span class="help-block">Required. </span>
+            </div>
+          </div>
+          
+          <div class="form-group control-group text_type interested_in_field ">
+            <label class="col-sm-2 control-label" for="stills">Price</label>
+            <div class="col-sm-2 controls">
+              <input class="form-control" required="required" size="50" type="text" ng-model="package.price" ng-required="true">
+              <span class="help-block">Required. </span>
+            </div>
+          </div>
+          
+          <input type="hidden" ng-model="package.id" />
+      </fieldset>
+    
+      <div class="form-group form-actions">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-primary" ng-click="AddNew('save')" ng-disabled="frmAdmin.$invalid" data-disable-with="Save" name="_save" type="submit">
+            <i class="fa fa-check"></i> Save
+          </button>
+          <span class="extra_buttons">
+              <button class="btn btn-info" ng-click="AddNew('add')" data-disable-with="Save and add another" name="_add_another" type="submit">
+                  Save and add another
+              </button>
+              
+              <button class="btn btn-info" ng-click="AddNew('edit')" data-disable-with="Save and edit" name="_add_edit" type="submit">
+                  Save and edit
+              </button>
+              
+              <button class="btn" data-disable-with="Cancel" ng-click="CancelSave()" formnovalidate name="_continue" type="submit">
+                  <i class="fa fa-remove"></i> Cancel
+              </button>
+          </span>
+        </div>
+      </div>
+    
+    </form>
+</div>

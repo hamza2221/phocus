@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Sorting for {{tag_type}}</h1>
+    </div>
+</div>
+
+<messages></messages>
+<div class="alert alert-success col-sm-2 pull-right" ng-show="showSuccessAlert">
+   <button type="button" class="close" data-ng-click="switchBool('showSuccessAlert')" >×</button>
+   {{successTextAlert}}
+</div>
+<div class="clear"></div>
+
+<ol class="breadcrumb">
+  <li><a class="" href="#/tag_{{tag_type}}">Tag {{tag_type}}</a></li>
+  <li class="active">Sorting</li>
+</ol>
+
+<ul class="nav nav-tabs">
+	<li title="" rel="" class="">
+        <a class="" href="#/tag_{{tag_type}}">
+            <span class="fa fa-list"></span>
+            List
+        </a> 
+    </li>
+    
+    <li title="" rel="" class="">
+        <a class="" href="#/tag_{{tag_type}}/new">
+            <span class="fa fa-plus"></span>
+            Add new
+        </a>
+    </li>
+    
+    <li title="" rel="" class="">
+        <a class="" href="#/tag_{{tag_type}}/export"> 
+            <span class="fa fa-share-square-o"></span> 
+            Export 
+        </a> 
+    </li>
+    
+    <li title="" rel="" class="active">
+        <a class="" href="#/tag_{{tag_type}}/nestable"> 
+            <span class="fa fa-arrows"></span> 
+            Sort 
+        </a> 
+    </li>
+</ul>
+
+
+<div id="table-container">
+	<label class="liveupdate">
+    	<input type="checkbox" ng-model="liveUpdate"> Live update
+    </label>
+    
+  <div data-ng-model="itemsList" as-sortable>
+  	<div class="retain_row" ng-repeat="item in itemsList" as-sortable-item>
+      	<input type="hidden" name="position" value="{{item.position}}">
+    	<span class="drag" as-sortable-item-handle><i class="fa fa-bars"></i></span>
+        <a href="#">{{item.name}}</a>
+        <div class="auctions">
+        	<a href="#/tag_{{tag_type}}/show/{{item.id}}"><i class="fa fa-info-circle"></i></a>
+            <a href="#/tag_{{tag_type}}/edit/{{item.id}}"><i class="fa fa-pencil"></i></a>
+            <a href="#/tag_{{tag_type}}/delete/{{item.id}}"><i class="fa fa-remove"></i></a>
+        </div>
+    </div>
+    
+    <button class="btn btn-primary" ng-click="savePositions()">Update</button>
+  </div>  
+</div>
